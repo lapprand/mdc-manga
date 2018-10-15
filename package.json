@@ -1,7 +1,7 @@
 {
-  "name": "mdc-horrible-feed",
+  "name": "mdc-nyaa",
   "version": "1.0.0",
-  "description": "I made this to style HorribleSubs RSS feed with some material design",
+  "description": "I made this to style Nyaa.si RSS feed with some material design",
   "main": "app.js",
   "scripts": {
     "build": "webpack --mode production",

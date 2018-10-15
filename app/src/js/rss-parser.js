@@ -3,8 +3,7 @@ let parser = new Parser();
  
 (async () => {
  
-  let feed = await parser.parseURL('https://www.horriblesubs.info/rss.php?res=720');
-//   let feed = await parser.parseURL('https://www.reddit.com/.rss');
+  let feed = await parser.parseURL('https://nyaa.si/?page=rss&c=1_2&f=2');
   console.log(feed.title);
  
   feed.items.forEach(item => {
