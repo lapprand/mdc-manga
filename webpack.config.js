@@ -11,7 +11,7 @@ module.exports = {
   target: 'web',
   mode: 'development',
   entry: [
-    path.join(__dirname, 'app', 'index.js'),
+    path.join(__dirname, 'app', 'index.ts'),
     path.join(__dirname, 'app', 'index.html'),
     path.join(__dirname, 'app', 'index.scss')
   ],
@@ -21,6 +21,11 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      },
       {
         test: /\.(png|jpg|gif)$/,
         use: [
@@ -90,22 +95,11 @@ module.exports = {
             }
           }
         ]
-      },
-      {
-        test: /\.js$/,
-        include: [
-          path.resolve(__dirname, 'app')
-        ],
-        exclude: [
-          path.resolve(__dirname, 'node_modules'),
-          path.resolve(__dirname, 'bower_components')
-        ],
-        loader: 'babel-loader',
-        query: {
-          presets: ['@babel/preset-env']
-        }
       }
     ]
+  },
+  resolve: {
+    extensions: [ '.tsx', '.ts', '.js' ]
   },
   plugins: [
     new webpack.ProvidePlugin({
