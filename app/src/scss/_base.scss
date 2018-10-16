@@ -28,6 +28,7 @@ html {
         
         .header {
             @include mdc-typography(headline2);
+            text-align: center;
         }
 
         .mdc-card {
