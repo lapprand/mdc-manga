@@ -1,6 +1,16 @@
 $enable-shadows: true;
 $card-corner-radius: 4px;
 
+* {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    word-break: break-all;
+    word-break: break-word;
+
+    hyphens: auto;
+}
+
 #loader {
     position: absolute;
     z-index: 1;
@@ -23,7 +33,7 @@ html {
     body {
 
         .mdc-layout-grid {
-            max-width: 1024px;
+            // max-width: 1024px;
         }
         
         .header {
@@ -32,14 +42,16 @@ html {
         }
 
         .mdc-card {
-            @include mdc-card-shape-radius($card-corner-radius);
+            // @include mdc-card-shape-radius($card-corner-radius);
 
             &__primary, &__secondary {
                 padding: 1rem;
             }
 
             .card-title {
-                @include mdc-typography(headline6);
+                // @include mdc-typography(headline6);
+                // @include mdc-typography-overflow-ellipsis;
+                white-space: normal;
                 color: $mdc-theme-on-primary;
             }
         }
@@ -48,8 +60,6 @@ html {
             height: auto;
 
             &__text {
-                @include mdc-typography-overflow-ellipsis;
-                white-space: normal;
             }
             
             &__graphic {
