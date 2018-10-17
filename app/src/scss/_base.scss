@@ -1,5 +1,5 @@
 $enable-shadows: true;
-$card-corner-radius: 4px;
+$card-corner-radius: 8px;
 
 * {
     overflow-wrap: break-word;
@@ -14,7 +14,7 @@ $card-corner-radius: 4px;
 #loader {
     position: absolute;
     z-index: 1;
-    width: 100vw;
+    width: 100%;
     height: auto;
 }
 
@@ -23,26 +23,55 @@ $card-corner-radius: 4px;
     scroll-behavior: smooth;
 }
 
+#grid {
+    display: none;
+}
+
+// body::before {
+//     content: "";
+//     position: absolute;
+//     z-index: -1;
+//     top: 0;
+//     bottom: 0;
+//     left: 0;
+//     right: 0;
+//     height: 100%;
+//     width: 100%;
+//     background-image: url("src/media/cats_pattern_by_rhoda_the_echidna.png");
+//     background-repeat: repeat;
+//     opacity: .4;
+// }
+
 html {
     @include mdc-typography-overflow-ellipsis;
     white-space: normal;
     overflow: visible;
 
-    background-image: url("src/media/paper-fibers.png");
+    background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("src/media/cats_pattern_by_rhoda_the_echidna.png");
+    background-position: top;
 
     body {
-
         .mdc-layout-grid {
-            // max-width: 1024px;
+            max-width: 1024px;
         }
         
         .header {
             @include mdc-typography(headline2);
+            border-bottom: 1px solid $mdc-theme-on-surface;
+            border-right: 1px solid $mdc-theme-surface;
+            border-left: 1px solid $mdc-theme-surface;
+            border-top: 1px solid $mdc-theme-on-surface;
+            background: $mdc-theme-surface;
             text-align: center;
+            padding: 1rem 0px;
         }
 
         .mdc-card {
-            // @include mdc-card-shape-radius($card-corner-radius);
+            @include mdc-card-shape-radius($card-corner-radius);
+
+            .hover {
+                @include mdc-card-shape-radius($card-corner-radius);
+            }
 
             &__primary, &__secondary {
                 padding: 1rem;
@@ -53,6 +82,10 @@ html {
                 // @include mdc-typography-overflow-ellipsis;
                 white-space: normal;
                 color: $mdc-theme-on-primary;
+            }
+
+            .mdc-icon-button {
+                color: $mdc-theme-on-surface;
             }
         }
         

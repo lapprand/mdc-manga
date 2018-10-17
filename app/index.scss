@@ -1,19 +1,14 @@
 // Normalize css
 @import "../node_modules/normalize.css/normalize.css";
 
-// $mdc-theme-primary: #212121;
-// $mdc-theme-secondary: #ffeb3b;
-// $mdc-theme-on-primary: #ffffff;
-// $mdc-theme-on-secondary: #000000;
-
 $mdc-theme-primary: #ffeb3b;
 $mdc-theme-on-primary: #212121;
 $mdc-theme-secondary: #ff5722;
 $mdc-theme-on-secondary: #212121;
-$mdc-theme-surface: #fff59d;
-$mdc-theme-on-surface: #442C2E;
+$mdc-theme-surface: #98ee99;
+$mdc-theme-on-surface: #6a0080;
 $mdc-theme-background: #FFFFFF;
-$mdc-theme-on-background: #442C2E;
+$mdc-theme-on-background: #212121;
 
 // Material Design Components
 @import "@material/linear-progress/mdc-linear-progress";
@@ -24,6 +19,7 @@ $mdc-theme-on-background: #442C2E;
 @import "@material/shape/functions";
 @import "@material/card/mdc-card";
 @import "@material/list/mdc-list";
+@import "@material/icon-button/mdc-icon-button";
 
 @import "src/scss/base";
 

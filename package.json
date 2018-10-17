@@ -1,7 +1,7 @@
 {
-  "name": "mdc-nyaa",
+  "name": "mdc-feed",
   "version": "1.0.0",
-  "description": "I made this to style Nyaa.si RSS feed with some material design",
+  "description": "I made this to style an RSS feed with some material design",
   "main": "app.js",
   "scripts": {
     "build": "webpack --mode production",
@@ -35,6 +35,7 @@
     "@material/button": "^0.40.0",
     "@material/card": "^0.40.0",
     "@material/elevation": "^0.40.0",
+    "@material/icon-button": "^0.40.1",
     "@material/layout-grid": "^0.39.0",
     "@material/linear-progress": "^0.40.0",
     "@material/list": "^0.40.0",
