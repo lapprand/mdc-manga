@@ -3,12 +3,18 @@ const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const DEV_SERVER_HOST = process.env.DEV_SERVER_HOST || 'localhost';
 const DEV_SERVER_PORT = parseInt(process.env.DEV_SERVER_PORT, 10) || 8080;
 
 
 module.exports = {
   target: 'web',
+  node: {
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
+  },
   mode: 'development',
   entry: [
     path.join(__dirname, 'app', 'index.ts'),
@@ -23,7 +29,12 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        use: {
+          loader:'ts-loader',
+          options: {
+            transpileOnly: true
+          }
+        },
         exclude: /node_modules/
       },
       {
@@ -110,15 +121,16 @@ module.exports = {
       template: path.join(__dirname, 'app', 'index.html')
     }),
     new CleanWebpackPlugin([path.resolve(__dirname, 'dist')]),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new ForkTsCheckerWebpackPlugin()
   ],
-  devtool: 'source-map',
   devServer: {
     host: DEV_SERVER_HOST,
     port: DEV_SERVER_PORT,
     disableHostCheck: true,
     headers: {
       'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS',
       'Access-Control-Allow-Headers': '*',
     },
     contentBase: path.join(__dirname, 'app'),
