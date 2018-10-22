@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://shibe.online/api'
+axios.defaults.baseURL = 'https://shibe.online/api'
 
 // Make a request for a user with a given ID
 axios.get('/shibes', {
