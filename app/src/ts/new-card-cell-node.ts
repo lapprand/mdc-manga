@@ -1,12 +1,8 @@
 import { addHover } from "./mdc-hover";
+import { Item } from "./item";
+import { newDiv } from "./div-component";
 
-var newDiv = (...tokens: string[]) => {
-    let div = document.createElement("div") as HTMLDivElement;
-    tokens.forEach(token => { div.classList.add(token); });
-    return div;
-};
-
-export function newCardCellNode(item: any) {
+export function newCardCellNode(item: Item) {
 
     // instantiate elements
     let gridCell = newDiv("mdc-layout-grid__cell");
@@ -20,14 +16,14 @@ export function newCardCellNode(item: any) {
 
     let cardTitle = newDiv("card-title", "mdc-typography--headline6");
 
-    let title = document.createTextNode(item.title);
+    let title = document.createTextNode(item.name);
 
     let cardActions = newDiv("mdc-card__actions");
     let cardActionIcons = newDiv("mdc-card__action-icons");
 
     let anchor = document.createElement("a") as HTMLAnchorElement;
     // anchor.setAttribute("href", "magnet:?xt=urn:btih:" + item.hash);
-    anchor.setAttribute("href", item.link);
+    anchor.setAttribute("href", item.links.magnet);
 
     let iconButton = document.createElement("button") as HTMLButtonElement;
     iconButton.classList.add("mdc-icon-button", "mdc-card__action", "mdc-card__action-icon");
