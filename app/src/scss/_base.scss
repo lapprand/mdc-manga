@@ -12,38 +12,14 @@ $card-corner-radius: 8px;
 }
 
 #loader {
-    position: absolute;
     z-index: 1;
     width: 100%;
     height: auto;
 }
 
-#content {
-    display: none;
-    scroll-behavior: smooth;
-}
-
-#grid {
-    display: none;
-}
-
-// body::before {
-//     content: "";
-//     position: absolute;
-//     z-index: -1;
-//     top: 0;
-//     bottom: 0;
-//     left: 0;
-//     right: 0;
-//     height: 100%;
-//     width: 100%;
-//     background-image: url("src/media/cats_pattern_by_rhoda_the_echidna.png");
-//     background-repeat: repeat;
-//     opacity: .4;
-// }
-
 html {
     @include mdc-typography-overflow-ellipsis;
+    scroll-behavior: smooth;
     white-space: normal;
     overflow: visible;
 
@@ -86,25 +62,6 @@ html {
 
             .mdc-icon-button {
                 color: $mdc-theme-on-surface;
-            }
-        }
-        
-        .mdc-list-item {
-            height: auto;
-
-            &__text {
-            }
-            
-            &__graphic {
-                padding: 4px;
-                border: $mdc-theme-on-primary dotted 1px; 
-                border-radius: $card-corner-radius;
-                // background: linear-gradient(to bottom, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to top, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%);
-                // background-blend-mode: multiply;
-
-                svg path:nth-child(2) {
-                    fill: $mdc-theme-on-primary;
-                }
             }
         }
     }
