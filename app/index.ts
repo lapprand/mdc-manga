@@ -4,7 +4,7 @@ import { Item } from "./src/ts/item";
 import "isomorphic-fetch";
 import "@babel/polyfill";
 
-fetch('/proxy').then(function (response) {
+fetch('/.netlify/functions/proxy').then(function (response) {
     if (response.ok) {
         response.json().then(function (json) {
             grid.removeChild(loader);

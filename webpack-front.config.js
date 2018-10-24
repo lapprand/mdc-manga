@@ -124,7 +124,10 @@ module.exports = {
     port: DEV_SERVER_PORT,
     disableHostCheck: true,
     proxy: {
-      '/proxy': 'http://localhost:80'
+      "/.netlify": {
+        target: "http://localhost:9000",
+        pathRewrite: { "^/.netlify/functions": "" }
+      }
     },
     contentBase: path.join(__dirname, 'app'),
     watchContentBase: true,
