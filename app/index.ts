@@ -1,7 +1,6 @@
 import { newLoader } from "./src/ts/loader-component";
 import { newCardCellNode } from "./src/ts/new-card-cell-node";
 import { Item } from "./src/ts/item";
-import "isomorphic-fetch";
 import "@babel/polyfill";
 
 fetch('/.netlify/functions/proxy').then(function (response) {

@@ -52,12 +52,8 @@
     "@material/theme": "^0.40.1",
     "@material/typography": "^0.40.1",
     "@types/node": "^10.12.0",
-    "cors": "^2.8.4",
-    "es6-promise": "^4.2.5",
-    "isomorphic-fetch": "^2.2.1",
     "netlify-lambda": "^1.0.2",
     "normalize.css": "^8.0.0",
-    "nyaapi": "^2.0.5",
-    "rss-parser": "^3.5.2"
+    "nyaapi": "^2.0.5"
   }
 }
