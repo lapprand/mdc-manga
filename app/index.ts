@@ -3,7 +3,7 @@ import { newLoader } from "./src/ts/loader-component";
 import { Item } from "./src/ts/item";
 import "@babel/polyfill";
 
-let body = document.querySelector("html");
+let html = document.querySelector("html");
 
 var fetching = false;
 let page = 1;
@@ -52,14 +52,15 @@ innerDiv.classList.add("mdc-layout-grid__inner");
 grid.appendChild(innerDiv);
 
 function checkForNextPage () {
-    // console.log(body.scrollTop + "+" + body.clientHeight + "=" + body.scrollHeight);
-    if (body.scrollTop + body.clientHeight >= body.scrollHeight && !fetching) {
+    let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+    // console.log(scrollTop + "+" + html.clientHeight + " = " + (scrollTop + html.clientHeight) + " = " + html.scrollHeight);
+    if (scrollTop + html.clientHeight >= html.scrollHeight && !fetching) {
         fetchMoreItems();
     }
 }
 
-document.addEventListener("scroll", checkForNextPage);
-document.addEventListener("touchmove", checkForNextPage);
+window.addEventListener("scroll", checkForNextPage);
+window.addEventListener("touchmove", checkForNextPage);
 
 // load first items
 fetchMoreItems();
