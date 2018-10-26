@@ -8,11 +8,11 @@ let html = document.querySelector("html");
 var fetching = false;
 let page = 1;
 
-async function fetchMoreItems() {
+function fetchMoreItems() {
     fetching = true;
     let loader = newLoader();
     grid.appendChild(loader);
-    
+
     let params = new URLSearchParams({
         term: "HorribleSubs",
         n: page.toString(),
@@ -23,23 +23,43 @@ async function fetchMoreItems() {
         method: "GET"
     }
 
-    let request = new Request("/.netlify/functions/proxy?" + params, requestInit);
+    // let request = new Request("/.netlify/functions/proxy?" + params, requestInit);
 
-    fetch(request).then(function (response) {
-        if (response.ok) {
-            response.json().then(function (json) {
-                grid.removeChild(loader);
-                json.forEach((item: Item) => {
-                    console.log(item);
+    // fetch(request).then(function (response) {
+    //     if (response.ok) {
+    //         response.json().then(function (json) {
+    //             grid.removeChild(loader);
+    //             json.forEach((item: Item) => {
+    //                 innerDiv.appendChild(newCardCellNode(item))
+    //             });
+    //             page++;
+    //         });
+    //     } else {
+    //         console.log('Network request for products.json failed with response ' + response.status + ': ' + response.statusText);
+    //     }
+    //     fetching = false;
+    // });
+
+    var request = new XMLHttpRequest();
+
+    // request.open('GET', 'https://api.jikan.moe/v3/schedule');
+    request.open('GET', '/.netlify/functions/proxy?' + params);
+
+    request.onreadystatechange = function () {
+        if (this.readyState === 4) {
+            console.log('Body:', this.responseText);
+            if (this.status === 200) {
+                JSON.parse(this.responseText).forEach((item: Item) => {
                     innerDiv.appendChild(newCardCellNode(item))
                 });
                 page++;
-            });
-        } else {
-            console.log('Network request for products.json failed with response ' + response.status + ': ' + response.statusText);
+            }
+            fetching = false;
+            grid.removeChild(loader);
         }
-        fetching = false;
-    });
+    };
+
+    request.send();
 }
 
 
@@ -51,7 +71,7 @@ let innerDiv = document.createElement("div");
 innerDiv.classList.add("mdc-layout-grid__inner");
 grid.appendChild(innerDiv);
 
-function checkForNextPage () {
+function checkForNextPage() {
     let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
     // console.log(scrollTop + "+" + html.clientHeight + " = " + (scrollTop + html.clientHeight) + " = " + html.scrollHeight);
     if (scrollTop + html.clientHeight >= html.scrollHeight && !fetching) {
