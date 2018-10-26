@@ -1,0 +1,15 @@
+@keyframes fade-in {
+    from {
+        transform: translateY(-80px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.mdc-card {
+    animation: mdc-animation-enter(/* $name: */ fade-in, /* $duration: */ 350ms);
+}

@@ -2,7 +2,8 @@
   "name": "mdc-feed",
   "version": "1.0.0",
   "description": "I made this to style an RSS feed with some material design",
-  "main": "app.js",
+  "main": "app",
+  "typings": "app",
   "scripts": {
     "build-lambda": "netlify-lambda build lambda",
     "build-front": "webpack --config webpack-front.config.js --mode production",
@@ -41,6 +42,7 @@
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
+    "@material/animation": "^0.40.1",
     "@material/button": "^0.40.1",
     "@material/card": "^0.40.1",
     "@material/elevation": "^0.40.1",
@@ -48,12 +50,14 @@
     "@material/layout-grid": "^0.40.1",
     "@material/linear-progress": "^0.40.1",
     "@material/list": "^0.40.1",
+    "@material/ripple": "^0.40.1",
     "@material/shape": "^0.40.1",
     "@material/theme": "^0.40.1",
     "@material/typography": "^0.40.1",
     "@types/node": "^10.12.0",
     "netlify-lambda": "^1.0.2",
     "normalize.css": "^8.0.0",
-    "nyaapi": "^2.0.5"
+    "nyaapi": "^2.0.5",
+    "url": "^0.11.0"
   }
 }

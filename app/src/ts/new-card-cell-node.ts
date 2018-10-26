@@ -5,7 +5,7 @@ import { newDiv } from "./div-component";
 export function newCardCellNode(item: Item) {
 
     // instantiate elements
-    let gridCell = newDiv("mdc-layout-grid__cell");
+    let gridCell = newDiv("mdc-layout-grid__cell", "mdc-layout-grid__cell--span-12");
 
     let card = newDiv("mdc-card");
 

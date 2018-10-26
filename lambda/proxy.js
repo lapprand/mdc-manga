@@ -1,8 +1,9 @@
 const { si } = require('nyaapi')
 
 exports.handler = async (event, context) => {
-  return si.search('HorribleSubs', 20, {
-    filter: 2,
+  let params = event.queryStringParameters;
+  return si.searchPage(params.term, params.n, {
+    filter: params.filter,
   })
     .then((data) => ({
       statusCode: 200,

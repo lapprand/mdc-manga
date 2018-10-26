@@ -16,10 +16,12 @@ $mdc-theme-on-background: #212121;
 @import "@material/icon-button/mdc-icon-button";
 @import "@material/typography/mdc-typography";
 @import "@material/elevation/mdc-elevation";
+@import "@material/animation/variables";
 @import "@material/shape/functions";
 @import "@material/list/mdc-list";
 @import "@material/card/mdc-card";
 @import "@material/shape/mixins";
 
 @import "src/scss/base";
+@import "src/scss/animations";
 
