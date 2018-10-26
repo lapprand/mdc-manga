@@ -51,13 +51,15 @@ let innerDiv = document.createElement("div");
 innerDiv.classList.add("mdc-layout-grid__inner");
 grid.appendChild(innerDiv);
 
-
-document.addEventListener("scroll", function () {
+function checkForNextPage () {
     // console.log(body.scrollTop + "+" + body.clientHeight + "=" + body.scrollHeight);
     if (body.scrollTop + body.clientHeight >= body.scrollHeight && !fetching) {
         fetchMoreItems();
     }
-});
+}
+
+document.addEventListener("scroll", checkForNextPage);
+document.addEventListener("touchmove", checkForNextPage);
 
 // load first items
 fetchMoreItems();
