@@ -2,6 +2,7 @@ import { newCardCellNode } from "./src/ts/new-card-cell-node";
 import { newLoader } from "./src/ts/loader-component";
 import { Item } from "./src/ts/item";
 import "@babel/polyfill";
+import axios from "axios";
 
 let html = document.querySelector("html");
 
@@ -13,53 +14,53 @@ function fetchMoreItems() {
     let loader = newLoader();
     grid.appendChild(loader);
 
-    let params = new URLSearchParams({
-        term: "HorribleSubs",
-        n: page.toString(),
-        filter: "2"
-    });
+    // let params = new URLSearchParams({
+    //     term: "HorribleSubs",
+    //     n: page.toString(),
+    //     filter: "2"
+    // });
 
-    let requestInit = {
-        method: "GET"
-    }
+    // var request = new XMLHttpRequest();
 
-    // let request = new Request("/.netlify/functions/proxy?" + params, requestInit);
+    // request.open('GET', '/.netlify/functions/proxy?' + params);
 
-    // fetch(request).then(function (response) {
-    //     if (response.ok) {
-    //         response.json().then(function (json) {
-    //             grid.removeChild(loader);
-    //             json.forEach((item: Item) => {
+    // request.onreadystatechange = function () {
+    //     if (this.readyState === 4) {
+    //         // console.log('Body:', this.responseText);
+    //         if (this.status === 200) {
+    //             JSON.parse(this.responseText).forEach((item: Item) => {
     //                 innerDiv.appendChild(newCardCellNode(item))
     //             });
     //             page++;
-    //         });
-    //     } else {
-    //         console.log('Network request for products.json failed with response ' + response.status + ': ' + response.statusText);
+    //         }
+    //         fetching = false;
+    //         grid.removeChild(loader);
     //     }
-    //     fetching = false;
-    // });
+    // };
 
-    var request = new XMLHttpRequest();
+    // request.send();
 
-    // request.open('GET', 'https://api.jikan.moe/v3/schedule');
-    request.open('GET', '/.netlify/functions/proxy?' + params);
-
-    request.onreadystatechange = function () {
-        if (this.readyState === 4) {
-            console.log('Body:', this.responseText);
-            if (this.status === 200) {
-                JSON.parse(this.responseText).forEach((item: Item) => {
-                    innerDiv.appendChild(newCardCellNode(item))
-                });
-                page++;
-            }
+    axios.get('/.netlify/functions/proxy', {
+        params: {
+            term: "HorribleSubs",
+            n: page.toString(),
+            filter: "2"
+        }
+    })
+        .then(function (response) {
+            console.log(response);
+            response.data.forEach((item: Item) => {
+                innerDiv.appendChild(newCardCellNode(item))
+            });
+            page++;
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+        .then(() => {
             fetching = false;
             grid.removeChild(loader);
-        }
-    };
-
-    request.send();
+        });
 }
 
 
