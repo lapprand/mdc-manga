@@ -18,7 +18,7 @@ $card-corner-radius: 4px;
 }
 
 html {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url("src/media/cats_pattern_by_rhoda_the_echidna.png");
+    background-image: linear-gradient(rgba(72, 34, 123, 0.75), rgba(72, 34, 123, 0.75)), url("src/media/cats_pattern_by_rhoda_the_echidna.png");
     background-repeat: repeat;
     background-position: top;
     scroll-behavior: smooth;
@@ -27,14 +27,14 @@ html {
 
 .mdc-elevation {
     &--z1 {
-        @include mdc-elevation(1, $mdc-theme-on-surface, 0.3);
+        @include mdc-elevation(1, $mdc-theme-on-primary, 0.2);
     }
     
     &--z8 {
-        @include mdc-elevation(8, $mdc-theme-on-surface, 0.3);
+        @include mdc-elevation(8, $mdc-theme-secondary, 0.2);
     }
 
     &--z16 {
-        @include mdc-elevation(16, $mdc-theme-on-surface, 0.3);
+        @include mdc-elevation(16, $mdc-theme-on-primary, 0.2);
     }
 }
