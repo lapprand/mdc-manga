@@ -1,14 +1,22 @@
 // Normalize css
+@import url('https://fonts.googleapis.com/css?family=Spicy+Rice');
 @import "../node_modules/normalize.css/normalize.css";
 
-$mdc-theme-primary: #6a0080;
-$mdc-theme-on-primary: #212121;
-$mdc-theme-secondary: #ff5722;
-$mdc-theme-on-secondary: #212121;
-$mdc-theme-surface: #98ee99;
-$mdc-theme-on-surface: #6a0080;
-$mdc-theme-background: #FFFFFF;
-$mdc-theme-on-background: #212121;
+$mdc-theme-primary: #5E388F;
+$mdc-theme-on-primary: #A185C6;
+$mdc-theme-secondary: #D3C647;
+$mdc-theme-on-secondary: #FFF7A3;
+$mdc-theme-surface: #A185C6;
+$mdc-theme-on-surface: #48227B;
+$mdc-theme-background: #000000;
+$mdc-theme-on-background: #FFFFFF;
+
+$mdc-layout-grid-max-width: 1024px;
+// $mdc-layout-grid-column-width: (
+//   desktop: 72px,
+//   tablet: 72px,
+//   phone: 72px
+// );
 
 // Material Design Components
 @import "@material/linear-progress/mdc-linear-progress";
