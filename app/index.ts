@@ -46,7 +46,7 @@ function checkForNextPage() {
     let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
     let clientHeight = window.innerHeight;
     console.log(scrollTop + "+" + clientHeight + " = " + (scrollTop + clientHeight) + " = " + scrollHeight);
-    if (scrollTop + clientHeight >= scrollHeight && !fetching) {
+    if (scrollTop + clientHeight >= scrollHeight - 400 && !fetching) {
         fetchMoreItems();
     }
 }
