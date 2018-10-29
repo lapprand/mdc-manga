@@ -4,8 +4,8 @@ const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const DEV_SERVER_HOST = process.env.DEV_SERVER_HOST || 'localhost';
-const DEV_SERVER_PORT = parseInt(process.env.DEV_SERVER_PORT, 10) || 8030;
+const DEV_SERVER_HOST = process.env.DEV_SERVER_HOST || '0.0.0.0';
+const DEV_SERVER_PORT = parseInt(process.env.DEV_SERVER_PORT, 10) || 8080;
 
 
 module.exports = {

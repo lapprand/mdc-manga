@@ -42,9 +42,11 @@ let grid = document.querySelector("#grid") as HTMLElement;
 // grid.appendChild(innerDiv);
 
 function checkForNextPage() {
+    let scrollHeight = document.body.scrollHeight || document.documentElement.scrollHeight;
     let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-    // console.log(scrollTop + "+" + html.clientHeight + " = " + (scrollTop + html.clientHeight) + " = " + html.scrollHeight);
-    if (scrollTop + html.clientHeight >= html.scrollHeight && !fetching) {
+    let clientHeight = window.innerHeight;
+    console.log(scrollTop + "+" + clientHeight + " = " + (scrollTop + clientHeight) + " = " + scrollHeight);
+    if (scrollTop + clientHeight >= scrollHeight && !fetching) {
         fetchMoreItems();
     }
 }
