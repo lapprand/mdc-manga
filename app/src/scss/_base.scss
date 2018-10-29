@@ -1,7 +1,7 @@
 $enable-shadows: true;
 $card-corner-radius: 4px;
 
-// span {
+// .header {
 //     overflow-wrap: break-word;
 //     word-wrap: break-word;
 
@@ -23,22 +23,6 @@ html {
     background-position: top;
     scroll-behavior: smooth;
     overflow: visible;
-    
-    
-    body {
-        .header {
-            @include mdc-typography(headline1);
-            font-family: 'Spicy Rice', cursive;
-            border-bottom: 1px solid $mdc-theme-on-surface;
-            border-right: 1px solid $mdc-theme-surface;
-            border-left: 1px solid $mdc-theme-surface;
-            border-top: 1px solid $mdc-theme-on-surface;
-            background: $mdc-theme-surface;
-            color: $mdc-theme-on-surface;
-            text-align: center;
-            padding: 1rem 0px;
-        }
-    }
 }
 
 .mdc-elevation {

@@ -14,9 +14,10 @@ $mdc-theme-on-background: #FFFFFF;
 $mdc-breakpoints: (
   largedesktop: 1200px,
   desktop: 992px,
-  tablet: 768px,
-  largephone: 576px,
-  phone: 0px
+  tablet: 720px,
+  largehandset: 480px,
+  mediumhandset: 360px,
+  smallhandset: 0px
 );
   
 // Material Design Components
@@ -31,7 +32,10 @@ $mdc-breakpoints: (
 @import "@material/card/mdc-card";
 @import "@material/shape/mixins";
 
+@import "src/scss/interpolate.scss";
+
 @import "src/scss/base";
+@import "src/scss/header";
 @import "src/scss/animations";
 @import "src/scss/my-image-list";
 

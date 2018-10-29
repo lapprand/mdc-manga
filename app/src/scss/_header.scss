@@ -1,0 +1,56 @@
+
+// @media (min-width: #{ map-get($mdc-breakpoints, smallhandset) }) {
+//     .my-image-list {
+//         @include mdc-image-list-standard-columns(1, 16px);
+//         max-width: get-max-width(1);
+//     }
+// }
+
+// @media (min-width: #{ map-get($mdc-breakpoints, mediumhandset) }) {
+//     .my-image-list {
+//         @include mdc-image-list-standard-columns(2, 16px);
+//         max-width: get-max-width(2);
+//     }
+// }
+
+// @media (min-width: #{ map-get($mdc-breakpoints, largehandset) }) {
+//     .my-image-list {
+//         @include mdc-image-list-standard-columns(2, 16px);
+//         max-width: get-max-width(2);
+//     }
+// }
+
+// @media (min-width: #{ map-get($mdc-breakpoints, tablet) }) {
+//     .header {
+//         @include mdc-typography(headline1);
+//         font-family: 'Spicy Rice', cursive;
+//     }
+// }
+
+// @media (min-width: #{ map-get($mdc-breakpoints, desktop) }) {
+//     .my-image-list {
+//         @include mdc-image-list-standard-columns(4, 16px);
+//         max-width: get-max-width(4);
+//     }
+// }
+
+// @media (min-width: #{ map-get($mdc-breakpoints, largedesktop) }) {
+//     .my-image-list {
+//         @include mdc-image-list-standard-columns(5, 16px);
+//         max-width: get-max-width(5);
+//     }
+// }
+
+// after media queries so font can be properly applied
+.header {
+    @include interpolate(font-size, 360px, 1200px, 20px, 60px);
+    font-family: 'Spicy Rice', cursive;
+    border-bottom: 1px solid $mdc-theme-on-surface;
+    border-right: 1px solid $mdc-theme-surface;
+    border-left: 1px solid $mdc-theme-surface;
+    border-top: 1px solid $mdc-theme-on-surface;
+    background: $mdc-theme-surface;
+    color: $mdc-theme-on-surface;
+    text-align: center;
+    padding: 1rem 0px;
+}
