@@ -27,10 +27,14 @@ html {
 
 .mdc-elevation {
     &--z1 {
-        @include mdc-elevation(1, $mdc-theme-on-surface);
+        @include mdc-elevation(1, $mdc-theme-on-surface, 0.3);
     }
     
     &--z8 {
         @include mdc-elevation(8, $mdc-theme-on-surface, 0.3);
+    }
+
+    &--z16 {
+        @include mdc-elevation(16, $mdc-theme-on-surface, 0.3);
     }
 }
