@@ -1,4 +1,4 @@
-import { newCardCellNode } from "./src/ts/new-card-cell-node";
+import { newItemNode } from "./src/ts/new-item-node";
 import { newLoader } from "./src/ts/loader-component";
 import { Item } from "./src/ts/item";
 import "@babel/polyfill";
@@ -18,7 +18,7 @@ function fetchMoreItems() {
         .then(function (response) {
             console.log(response);
             response.data.top.forEach((item: Item) => {
-                innerDiv.appendChild(newCardCellNode(item))
+                grid.appendChild(newItemNode(item))
             });
             page++;
         })
@@ -37,9 +37,9 @@ function fetchMoreItems() {
 let grid = document.querySelector("#grid") as HTMLElement;
 
 // add layout-grid inner for cell wrapping
-let innerDiv = document.createElement("div");
-innerDiv.classList.add("mdc-layout-grid__inner");
-grid.appendChild(innerDiv);
+// let innerDiv = document.createElement("div");
+// innerDiv.classList.add("mdc-layout-grid__inner");
+// grid.appendChild(innerDiv);
 
 function checkForNextPage() {
     let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;

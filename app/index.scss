@@ -11,18 +11,19 @@ $mdc-theme-on-surface: #48227B;
 $mdc-theme-background: #000000;
 $mdc-theme-on-background: #FFFFFF;
 
-$mdc-layout-grid-max-width: 1024px;
-// $mdc-layout-grid-column-width: (
-//   desktop: 72px,
-//   tablet: 72px,
-//   phone: 72px
-// );
-
+$mdc-breakpoints: (
+  largedesktop: 1200px,
+  desktop: 992px,
+  tablet: 768px,
+  largephone: 576px,
+  phone: 0px
+);
+  
 // Material Design Components
 @import "@material/linear-progress/mdc-linear-progress";
-@import "@material/layout-grid/mdc-layout-grid";
 @import "@material/icon-button/mdc-icon-button";
 @import "@material/typography/mdc-typography";
+@import "@material/image-list/mdc-image-list";
 @import "@material/elevation/mdc-elevation";
 @import "@material/animation/variables";
 @import "@material/shape/functions";
@@ -32,4 +33,5 @@ $mdc-layout-grid-max-width: 1024px;
 
 @import "src/scss/base";
 @import "src/scss/animations";
+@import "src/scss/my-image-list";
 

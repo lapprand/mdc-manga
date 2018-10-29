@@ -1,11 +1,11 @@
-import { newDiv } from "./div-component";
+import { newEl } from "./new-element";
 
 export function newLoader() {
 
-    let loader = newDiv();
+    let loader = newEl("div");
     loader.setAttribute("id", "loader");
 
-    let progressBar = newDiv("mdc-linear-progress", "mdc-linear-progress--indeterminate");
+    let progressBar = newEl("div", "mdc-linear-progress", "mdc-linear-progress--indeterminate");
     progressBar.setAttribute("role", "progressbar");
 
     var progressBarInner = (): HTMLSpanElement => {
@@ -14,11 +14,11 @@ export function newLoader() {
         return pbInner;
     };
 
-    progressBar.appendChild(newDiv("mdc-linear-progress__buffering-dots"));
-    progressBar.appendChild(newDiv("mdc-linear-progress__buffer"));
-    progressBar.appendChild(newDiv("mdc-linear-progress__bar", "mdc-linear-progress__primary-bar"));
+    progressBar.appendChild(newEl("div", "mdc-linear-progress__buffering-dots"));
+    progressBar.appendChild(newEl("div", "mdc-linear-progress__buffer"));
+    progressBar.appendChild(newEl("div", "mdc-linear-progress__bar", "mdc-linear-progress__primary-bar"));
     progressBar.lastChild.appendChild(progressBarInner());
-    progressBar.appendChild(newDiv("mdc-linear-progress__bar", "mdc-linear-progress__primary-bar"));
+    progressBar.appendChild(newEl("div", "mdc-linear-progress__bar", "mdc-linear-progress__primary-bar"));
     progressBar.lastChild.appendChild(progressBarInner());
 
     loader.appendChild(progressBar);

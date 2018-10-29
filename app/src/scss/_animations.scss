@@ -10,6 +10,6 @@
     }
 }
 
-.mdc-card {
+.mdc-image-list__item, img {
     animation: mdc-animation-enter(/* $name: */ fade-in, /* $duration: */ 350ms);
 }

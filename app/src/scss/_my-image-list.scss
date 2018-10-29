@@ -1,0 +1,43 @@
+.my-image-list {
+    @include mdc-image-list-aspect(.64285);
+    max-width: map-get($mdc-breakpoints, largedesktop);
+}
+
+@function get-max-width($cols) {
+    @return $cols * 225px;
+}
+
+@media (min-width: #{ map-get($mdc-breakpoints, phone) }) {
+    .my-image-list {
+        @include mdc-image-list-standard-columns(1, 16px);
+        max-width: get-max-width(1);
+    }
+}
+
+@media (min-width: #{ map-get($mdc-breakpoints, largephone) }) {
+    .my-image-list {
+        @include mdc-image-list-standard-columns(2, 16px);
+        max-width: get-max-width(2);
+    }
+}
+
+@media (min-width: #{ map-get($mdc-breakpoints, tablet) }) {
+    .my-image-list {
+        @include mdc-image-list-standard-columns(3, 16px);
+        max-width: get-max-width(3);
+    }
+}
+
+@media (min-width: #{ map-get($mdc-breakpoints, desktop) }) {
+    .my-image-list {
+        @include mdc-image-list-standard-columns(4, 16px);
+        max-width: get-max-width(4);
+    }
+}
+
+@media (min-width: #{ map-get($mdc-breakpoints, largedesktop) }) {
+    .my-image-list {
+        @include mdc-image-list-standard-columns(5, 16px);
+        max-width: get-max-width(5);
+    }
+}
