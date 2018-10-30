@@ -4,6 +4,7 @@ import { Item } from "./src/ts/item";
 import "@babel/polyfill";
 import axios from "axios";
 import "lazysizes";
+import "./src/media/favicon.ico";
 
 let html = document.querySelector("html");
 var fetching = false;

@@ -33,11 +33,13 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(ico|png|jpg|gif)$/,
         use: [
           {
             loader: 'file-loader',
-            options: {}
+            options: {
+              name: '[path][name].[ext]'
+            }
           }
         ]
       },
@@ -109,7 +111,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'app', 'index.html')
+      template: path.join(__dirname, 'app', 'index.html'),
+      favicon: 'app/src/media/favicon.ico'
     }),
     new CleanWebpackPlugin([path.resolve(__dirname, 'dist', 'front')]),
     new webpack.HotModuleReplacementPlugin(),
