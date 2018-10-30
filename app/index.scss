@@ -16,7 +16,7 @@ $mdc-breakpoints: (
   desktop: 992px,
   tablet: 720px,
   largehandset: 480px,
-  mediumhandset: 360px,
+  mediumhandset: 400px,
   smallhandset: 0px
 );
   
@@ -38,4 +38,5 @@ $mdc-breakpoints: (
 @import "src/scss/header";
 @import "src/scss/animations";
 @import "src/scss/my-image-list";
+@import "src/scss/my-image-list-item";
 

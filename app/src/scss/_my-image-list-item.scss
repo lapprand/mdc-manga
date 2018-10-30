@@ -1,0 +1,43 @@
+.my-image-list__item {
+    border: 1px solid $mdc-theme-on-surface;
+}
+
+.list-item {
+    // overflow-wrap: break-word;
+    // word-wrap: break-word;
+
+    // word-break: break-all;
+    // word-break: break-word;
+
+    // hyphens: auto;
+
+    &-content {
+        background: rgba(161, 133, 198, 0.9);
+        padding: .5rem;
+        color: $mdc-theme-on-surface;
+        width: calc(100% - 1rem);
+        
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+
+    &-title {
+        padding-bottom: .5rem;
+    }
+
+    &-anchor {
+        position: absolute;
+        bottom: .25rem;
+        right: .25rem;
+        $size: 24px;
+
+        color: transparent;
+        // width: $size;
+        // height: $size;
+        .mdc-icon-button {
+            @include mdc-icon-button-size($size, $size);
+        }
+    }
+}

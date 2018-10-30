@@ -1,57 +1,49 @@
-@function get-max-width($cols) {
-    @return $cols * 225px;
+@function get-max-width($cols, $gutter) {
+    @return ($cols * 225px) + ($gutter * ($cols - 1));
 }
 
 .my-image-list {
     @include mdc-image-list-aspect(.64285);
-
-    .mdc-image-list__item {
-        border: 1px solid $mdc-theme-on-surface;
-    }
 }
 
 @media (min-width: #{ map-get($mdc-breakpoints, smallhandset) }) {
     .my-image-list {
         @include mdc-image-list-standard-columns(1, 16px);
-        max-width: get-max-width(1);
-
-        &__item {
-            max-height: 175px;
-        }
+        max-width: get-max-width(1, 16px);
     }
 }
 
 @media (min-width: #{ map-get($mdc-breakpoints, mediumhandset) }) {
     .my-image-list {
         @include mdc-image-list-standard-columns(2, 16px);
-        max-width: get-max-width(2);
+        max-width: get-max-width(2, 16px);
     }
 }
 
 @media (min-width: #{ map-get($mdc-breakpoints, largehandset) }) {
     .my-image-list {
         @include mdc-image-list-standard-columns(2, 16px);
-        max-width: get-max-width(2);
+        max-width: get-max-width(2, 16px);
     }
 }
 
 @media (min-width: #{ map-get($mdc-breakpoints, tablet) }) {
     .my-image-list {
         @include mdc-image-list-standard-columns(3, 20px);
-        max-width: get-max-width(3);
+        max-width: get-max-width(3, 20px);
     }
 }
 
 @media (min-width: #{ map-get($mdc-breakpoints, desktop) }) {
     .my-image-list {
         @include mdc-image-list-standard-columns(4, 24px);
-        max-width: get-max-width(4);
+        max-width: get-max-width(4, 24px);
     }
 }
 
 @media (min-width: #{ map-get($mdc-breakpoints, largedesktop) }) {
     .my-image-list {
         @include mdc-image-list-standard-columns(5, 32px);
-        max-width: get-max-width(5);
+        max-width: get-max-width(5, 32px);
     }
 }

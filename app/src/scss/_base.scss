@@ -1,20 +1,13 @@
 $enable-shadows: true;
-$card-corner-radius: 4px;
-
-// .header {
-//     overflow-wrap: break-word;
-//     word-wrap: break-word;
-
-//     word-break: break-all;
-//     word-break: break-word;
-
-//     hyphens: auto;
-// }
 
 #loader {
     z-index: 1;
     width: 100%;
     height: auto;
+}
+
+#grid {
+    padding: 1rem;
 }
 
 html {
@@ -27,14 +20,14 @@ html {
 
 .mdc-elevation {
     &--z1 {
-        @include mdc-elevation(1, $mdc-theme-on-primary, 0.2);
+        @include mdc-elevation(1, $mdc-theme-on-secondary, 0.15);
     }
     
     &--z8 {
-        @include mdc-elevation(8, $mdc-theme-secondary, 0.2);
+        @include mdc-elevation(8, $mdc-theme-on-secondary, 0.15);
     }
 
     &--z16 {
-        @include mdc-elevation(16, $mdc-theme-on-primary, 0.2);
+        @include mdc-elevation(16, $mdc-theme-on-secondary, 0.15);
     }
 }
