@@ -1,6 +1,7 @@
 import { addHover } from "./mdc-hover";
-import { Item } from "./item";
 import { newEl } from "./new-element";
+import { fadeIn } from "./animate";
+import { Item } from "./item";
 
 export function newItemNode(item: Item) {
 
@@ -107,6 +108,10 @@ export function newItemNode(item: Item) {
     listItemContent.appendChild(listItemScore);
     listItemContent.appendChild(listItemStartDate);
     listItemContent.appendChild(anchor);
+
+    // animate
+    fadeIn(listItem);
+    fadeIn(listItemImage);
 
     return listItem;
 };

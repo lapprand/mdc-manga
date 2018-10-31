@@ -1,15 +1,31 @@
 @keyframes fade-in {
     from {
-        transform: translateY(-80px);
+        // transform: translateY(-80px);
         opacity: 0;
     }
 
     to {
-        transform: translateY(0);
+        // transform: translateY(0);
         opacity: 1;
     }
 }
 
-.mdc-image-list__item, img {
-    animation: mdc-animation-enter(/* $name: */ fade-in, /* $duration: */ 350ms);
+@keyframes fade-out {
+    from {
+        // transform: translateY(0);
+        opacity: 1;
+    }
+
+    to {
+        // transform: translateY(-80px);
+        opacity: 0;
+    }
+}
+
+.fade-in {
+    animation: mdc-animation-enter(fade-in, 350ms);
+}
+
+.fade-out {
+    animation: mdc-animation-exit-permanent(fade-out, 175ms);
 }

@@ -1,12 +1,12 @@
 import { newItemNode } from "./src/ts/new-item-node";
 import { newLoader } from "./src/ts/loader-component";
 import { Item } from "./src/ts/item";
+import { fadeOut } from "./src/ts/animate";
 import "./src/media/favicon.ico";
-import axios from "axios";
 import "@babel/polyfill";
 import "lazysizes";
 
-let html = document.querySelector("html");
+const jikan = require("jikanjs");
 var fetching = false;
 let page = 1;
 
@@ -15,20 +15,23 @@ function fetchMoreItems() {
     let loader = newLoader();
     grid.appendChild(loader);
 
-    axios.get("https://api.jikan.moe/v3/top/manga/" + page)
-        .then(function (response) {
-            console.log(response);
-            response.data.top.forEach((item: Item) => {
-                grid.appendChild(newItemNode(item))
+    jikan.loadTop("manga", page)
+        .then(function (response: any) {
+            // console.log(response);
+            fadeOut([loader], () => {
+                grid.removeChild(loader);
+                let items: Item[] = response.top;
+                for (let item of items) {
+                    grid.appendChild(newItemNode(item))
+                }
+                page++;
             });
-            page++;
         })
-        .catch(function (error) {
+        .catch(function (error: any) {
             console.log(error);
         })
         .then(() => {
             fetching = false;
-            grid.removeChild(loader);
         });
 
 }

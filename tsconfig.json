@@ -2,9 +2,9 @@
     "compilerOptions": {
         "outDir": "./dist/",
         "noImplicitAny": true,
-        "module": "esnext",
+        "module": "commonjs",
         "moduleResolution": "node",
-        "target": "es5",
+        "target": "es2016",
         "jsx": "react",
         "allowJs": true,
         "lib": [

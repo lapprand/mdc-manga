@@ -58,21 +58,11 @@ module.exports = {
             options: {
               svgo: {
                 plugins: [
-                  {
-                    mergePaths: false
-                  },
-                  {
-                    cleanupIDs: false
-                  },
-                  {
-                    removeTitle: true
-                  },
-                  {
-                    removeUselessStrokeAndFill: false
-                  },
-                  {
-                    removeUnknownsAndDefaults: false
-                  },
+                  { mergePaths: false },
+                  { cleanupIDs: false },
+                  { removeTitle: true },
+                  { removeUselessStrokeAndFill: false },
+                  { removeUnknownsAndDefaults: false },
                 ],
               },
             }
