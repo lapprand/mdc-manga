@@ -37,6 +37,10 @@ function fetchMoreItems() {
         })
         .catch(function (error: any) {
             console.log(error);
+            fadeOut([loader], () => {
+                grid.removeChild(loader);
+                fetchMoreItems();
+            });
         })
         .then(() => {
             fetching = false;
