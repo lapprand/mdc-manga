@@ -1,10 +1,10 @@
 import { newItemNode } from "./src/ts/new-item-node";
 import { newLoader } from "./src/ts/loader-component";
 import { Item } from "./src/ts/item";
-import "@babel/polyfill";
-import axios from "axios";
-import "lazysizes";
 import "./src/media/favicon.ico";
+import axios from "axios";
+import "@babel/polyfill";
+import "lazysizes";
 
 let html = document.querySelector("html");
 var fetching = false;

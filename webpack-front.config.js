@@ -38,7 +38,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: '[path][name].[ext]'
+              name: '[name].[ext]'
             }
           }
         ]
@@ -111,8 +111,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'app', 'index.html'),
-      favicon: 'app/src/media/favicon.ico'
+      template: path.join(__dirname, 'app', 'index.html')
     }),
     new CleanWebpackPlugin([path.resolve(__dirname, 'dist', 'front')]),
     new webpack.HotModuleReplacementPlugin(),
