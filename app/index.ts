@@ -33,6 +33,7 @@ function fetchMoreItems() {
                     grid.appendChild(newItemNode(item))
                 }
                 page++;
+                fetching = false;
             });
         })
         .catch(function (error: any) {
@@ -40,10 +41,8 @@ function fetchMoreItems() {
             fadeOut([loader], () => {
                 grid.removeChild(loader);
                 fetchMoreItems();
+                fetching = false;
             });
-        })
-        .then(() => {
-            fetching = false;
         });
 
 }
