@@ -4,7 +4,15 @@ import { Item } from "./src/ts/item";
 import { fadeOut } from "./src/ts/animate";
 import "./src/media/favicon.ico";
 import "@babel/polyfill";
-import "lazysizes";
+
+declare global {
+    interface Window { lazySizesConfig: any; }
+}
+
+window.lazySizesConfig = window.lazySizesConfig || {};
+window.lazySizesConfig.preloadAfterLoad = true;
+require("lazysizes");
+
 
 const jikan = require("jikanjs");
 var fetching = false;
