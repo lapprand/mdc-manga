@@ -30,12 +30,6 @@ export class Selector {
         this.list = newEl("ul", "mdc-list") as HTMLUListElement;
         this.element.lastChild.appendChild(this.list);
         
-        // all categories list item
-        // let listItem = this.createItem("All", "all");
-        // listItem.classList.add("mdc-list-item--selected");
-        // listItem.setAttribute("aria-selected", "true");
-        // this.list.appendChild(listItem);
-        
         let floatingLabel = newEl("span", "mdc-floating-label");
         floatingLabel.textContent = labelText;
         this.element.appendChild(floatingLabel);

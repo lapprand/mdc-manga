@@ -43,7 +43,7 @@ export class Items {
         this.grid.appendChild(this.loader);
         jikan.loadTop(this.itemType, this.page)
             .then(async (response: any) => {
-                // console.log(response);
+                console.log(response);
                 await fadeOut([this.loader]);
                 this.grid.removeChild(this.loader);
                 this.addItems(response.top);
@@ -66,6 +66,7 @@ export class Items {
 
     addItems = (items: Item[]) => {
         for (let item of items) {
+            item.birthday = item.birthday? new Date(item.birthday) : undefined;
             itemsService.addItem(item);
             this.grid.appendChild(newItemNode(item));
         }

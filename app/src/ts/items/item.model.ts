@@ -11,6 +11,9 @@ export type Item = {
     type: string;
     url: string;
     volumes: string;
+    favorites: string;
+    name_kanji: string;
+    birthday: Date;
 }
 
 export function createFilter({
@@ -24,7 +27,10 @@ export function createFilter({
     title = "",
     type = "",
     url = "",
-    volumes = ""
+    volumes = "",
+    favorites = "",
+    name_kanji = "",
+    birthday = null
 }: Partial<Item>) {
     return {
         end_date,
@@ -38,5 +44,8 @@ export function createFilter({
         type,
         url,
         volumes,
+        favorites,
+        name_kanji,
+        birthday
     }
 }

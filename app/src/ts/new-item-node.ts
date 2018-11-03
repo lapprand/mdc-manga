@@ -18,7 +18,8 @@ export function newItemNode(item: Item) {
         "div",
         "mdc-image-list__image-aspect-container"
     );
-    
+    listItem.appendChild(aspectRatioContainer);
+
     // image
     let listItemImage = newEl(
         "img",
@@ -29,85 +30,67 @@ export function newItemNode(item: Item) {
     listItemImage.setAttribute("data-sizes", "auto");
     listItemImage.setAttribute("data-optimumx", "1.0");
     listItemImage.setAttribute("data-src", item.image_url);
+    aspectRatioContainer.appendChild(listItemImage);
 
     // item details
     let listItemContent = newEl(
         "div",
         "list-item-content"
     );
+    listItem.appendChild(listItemContent);
 
-    let listItemTitle = newEl(
-        "div",
-        "list-item-title",
-        "mdc-typography--subtitle2"
-    );
-    listItemTitle.textContent = item.title;
+    let listItemTitle = newEl("div", "list-item-title", "mdc-typography--subtitle2");
+    listItemTitle.textContent = (item.name_kanji)? item.title + " (" + item.name_kanji + ")" : item.title;
+    listItemContent.appendChild(listItemTitle);
 
-    let listItemRank = newEl(
-        "div",
-        "list-item-rank",
-        "mdc-typography--caption"
-    );
-    listItemRank.textContent = "Rank: #" + item.rank;
+    if (item.rank) {
+        let listItemRank = newEl("div", "list-item-rank", "mdc-typography--caption");
+        listItemRank.textContent = "Rank: #" + item.rank;
+        listItemContent.appendChild(listItemRank);
+    }
 
-    let listItemStartDate = newEl(
-        "div",
-        "list-item-start-date",
-        "mdc-typography--caption"
-    );
-    listItemStartDate.textContent = "Published: " + item.start_date;
+    if (item.birthday) {
+        let listItemBirthday = newEl("div", "list-item-birthday", "mdc-typography--caption");
+        listItemBirthday.textContent = "Birthday: " + item.birthday.toLocaleDateString();
+        listItemContent.appendChild(listItemBirthday);
+    }
 
-    let listItemScore = newEl(
-        "div",
-        "list-item-score",
-        "mdc-typography--caption"
-    );
-    listItemScore.textContent = "Rating: " + item.score;
+    if (item.score) {
+        let listItemScore = newEl("div", "list-item-score", "mdc-typography--caption");
+        listItemScore.textContent = "Rating: " + item.score;
+        listItemContent.appendChild(listItemScore);
+    }
 
-    // let card = newEl(
-    //     "div",
-    //     "mdc-card",
-    //     "mdc-card--outlined"
-    // );
+    if (item.favorites) {
+        let listItemFavorites = newEl("div", "list-item-favorites", "mdc-typography--caption");
+        listItemFavorites.textContent = "Favorites: " + item.favorites;
+        listItemContent.appendChild(listItemFavorites);
+    }
 
-    // card with manga name
-    // let cardPrimary = newEl("mdc-card__primary");
-    // let cardTitle = newEl("card-title", "mdc-typography--headline6");
-    // let title = document.createTextNode(item.title);
-
-    // // set actions which will hold icons
-    // let cardActions = newEl("mdc-card__actions");
-    // let cardActionIcons = newEl("mdc-card__action-icons");
+    if (item.start_date) {
+        let listItemStartDate = newEl("div", "list-item-start-date", "mdc-typography--caption");
+        listItemStartDate.textContent = "Published: " + item.start_date;
+        listItemContent.appendChild(listItemStartDate);
+    }
 
     // set icon with link to manga details
-    let anchor = newEl(
-        "a", 
-        "list-item-anchor"
-    );
+    let anchor = newEl("a", "list-item-anchor");
     anchor.setAttribute("href", item.url);
     anchor.setAttribute("target", "_blank");
     anchor.setAttribute("rel", "noopener noreferrer");
+    listItemContent.appendChild(anchor);
 
     let iconButton = newEl(
-        "button", 
-        "mdc-icon-button", 
-        "material-icons", 
-        "mdc-card__action", 
+        "button",
+        "mdc-icon-button",
+        "material-icons",
+        "mdc-card__action",
         "mdc-card__action--icon"
     );
     iconButton.setAttribute("aria-pressed", "false");
     iconButton.setAttribute("aria-label", "Open in new tab");
     iconButton.textContent = "open_in_new";
     anchor.appendChild(iconButton);
-
-    listItem.appendChild(aspectRatioContainer);
-    aspectRatioContainer.appendChild(listItemImage);
-    listItem.appendChild(listItemContent);
-    listItemContent.appendChild(listItemTitle);
-    listItemContent.appendChild(listItemRank);
-    listItemContent.appendChild(listItemScore);
-    listItemContent.appendChild(listItemStartDate);
-    listItemContent.appendChild(anchor);
 
     // animate
     fadeIn(listItem);
