@@ -2,10 +2,12 @@ const anim = require("@material/animation");
 const animEnd = anim.getCorrectEventName(window, "animationend");
 
 // fade in
-function fadeIn(...els: HTMLElement[]) {
+async function fadeIn(...els: HTMLElement[]) {
     for (let el of els) {
         addFadeIn(el);
-        el.addEventListener(animEnd, () => { removeFadeIn(el) });
+        el.addEventListener(animEnd, () => { 
+            removeFadeIn(el) 
+        });
     }
 }
 
@@ -18,12 +20,11 @@ function removeFadeIn(el: HTMLElement) {
 }
 
 // fade out
-function fadeOut(els: HTMLElement[], onFadeEnd?: Function) {
+async function fadeOut(els: HTMLElement[]) {
     for (let el of els) {
         addFadeOut(el);
         el.addEventListener(animEnd, () => { 
             removeFadeOut(el);
-            onFadeEnd();
         });
     }
 }

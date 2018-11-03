@@ -1,7 +1,7 @@
+import { Item } from "./items/item.model";
 import { addHover } from "./mdc-hover";
 import { newEl } from "./new-element";
 import { fadeIn } from "./animate";
-import { Item } from "./item";
 
 export function newItemNode(item: Item) {
 

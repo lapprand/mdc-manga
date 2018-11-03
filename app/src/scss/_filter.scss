@@ -1,0 +1,20 @@
+#filters {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+
+    .filter {
+        align-self: center;
+    }
+}
+
+.select-width {
+    width: 200px;
+}
+
+.mdc-select {
+    @include mdc-select-hover-bottom-line-color($mdc-theme-secondary);
+    @include mdc-select-focused-bottom-line-color($mdc-theme-secondary);
+    @include mdc-select-focused-label-color($mdc-theme-secondary);
+    @include mdc-select-shape-radius(50%);
+}

@@ -1,9 +1,8 @@
-import { newItemNode } from "./src/ts/new-item-node";
-import { newLoader } from "./src/ts/loader-component";
-import { Item } from "./src/ts/item";
-import { fadeOut } from "./src/ts/animate";
+import { filterService, filterQuery, itemsQuery } from "./config";
 import "./src/media/favicon.ico";
+import "./src/ts/mdc-select";
 import "@babel/polyfill";
+import { Items } from "./src/ts/items/items";
 
 declare global {
     interface Window { lazySizesConfig: any; }
@@ -11,46 +10,22 @@ declare global {
 
 window.lazySizesConfig = window.lazySizesConfig || {};
 window.lazySizesConfig.preloadAfterLoad = true;
+window.lazySizesConfig.loadMode = 1;
 require("lazysizes");
 
 
-const jikan = require("jikanjs");
-var fetching = false;
-let page = 1;
-
-function fetchMoreItems() {
-    fetching = true;
-    let loader = newLoader();
-    grid.appendChild(loader);
-
-    jikan.loadTop("manga", page)
-        .then(function (response: any) {
-            // console.log(response);
-            fadeOut([loader], () => {
-                grid.removeChild(loader);
-                let items: Item[] = response.top;
-                for (let item of items) {
-                    grid.appendChild(newItemNode(item))
-                }
-                page++;
-                fetching = false;
-            });
-        })
-        .catch(function (error: any) {
-            console.log(error);
-            fadeOut([loader], () => {
-                grid.removeChild(loader);
-                fetchMoreItems();
-                fetching = false;
-            });
-        });
-
-}
-
-
 // get node where items will be placed
-let grid = document.querySelector("#grid") as HTMLElement;
+// let grid = document.querySelector("#grid") as HTMLElement;
+let items = new Items();
 
+// default type to list
+filterService.updateItemType("manga");
+
+let typeObs$ = filterQuery.select(filter => filter.itemType);
+typeObs$.forEach(t => {
+    items.itemType = t;
+    items.onTypeChange();
+});
 
 let scrollHeight, scrollTop, clientHeight;
 function checkForNextPage() {
@@ -58,13 +33,10 @@ function checkForNextPage() {
     scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
     clientHeight = window.innerHeight;
     // console.log(scrollTop + "+" + clientHeight + " = " + (scrollTop + clientHeight) + " = " + scrollHeight);
-    if (scrollTop + clientHeight >= scrollHeight - 400 && !fetching) {
-        fetchMoreItems();
+    if (scrollTop + clientHeight >= scrollHeight - 400 && !items.fetching) {
+        items.fetchMoreItems();
     }
 }
 
 window.addEventListener("scroll", checkForNextPage);
 window.addEventListener("touchmove", checkForNextPage);
-
-// load first items
-fetchMoreItems();
