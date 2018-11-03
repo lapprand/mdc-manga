@@ -16,5 +16,4 @@
     @include mdc-select-hover-bottom-line-color($mdc-theme-secondary);
     @include mdc-select-focused-bottom-line-color($mdc-theme-secondary);
     @include mdc-select-focused-label-color($mdc-theme-secondary);
-    @include mdc-select-shape-radius(50%);
 }
