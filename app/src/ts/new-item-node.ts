@@ -40,36 +40,36 @@ export function newItemNode(item: Item) {
     listItem.appendChild(listItemContent);
 
     let listItemTitle = newEl("div", "list-item-title", "mdc-typography--subtitle2");
-    listItemTitle.textContent = (item.name_kanji)? item.title + " (" + item.name_kanji + ")" : item.title;
+    listItemTitle.textContent = (item.name_kanji)? `${item.title} (${item.name_kanji})` : item.title;
     listItemContent.appendChild(listItemTitle);
 
     if (item.rank) {
         let listItemRank = newEl("div", "list-item-rank", "mdc-typography--caption");
-        listItemRank.textContent = "Rank: #" + item.rank;
+        listItemRank.textContent = `Rank: #${item.rank}`;
         listItemContent.appendChild(listItemRank);
     }
 
     if (item.birthday) {
         let listItemBirthday = newEl("div", "list-item-birthday", "mdc-typography--caption");
-        listItemBirthday.textContent = "Birthday: " + item.birthday.toLocaleDateString();
+        listItemBirthday.textContent = `Birthday: ${item.birthday.toLocaleDateString()}`;
         listItemContent.appendChild(listItemBirthday);
     }
 
     if (item.score) {
         let listItemScore = newEl("div", "list-item-score", "mdc-typography--caption");
-        listItemScore.textContent = "Rating: " + item.score;
+        listItemScore.textContent = `Rating: ${item.score}`;
         listItemContent.appendChild(listItemScore);
     }
 
     if (item.favorites) {
         let listItemFavorites = newEl("div", "list-item-favorites", "mdc-typography--caption");
-        listItemFavorites.textContent = "Favorites: " + item.favorites;
+        listItemFavorites.textContent = `Favorites: ${item.favorites}`;
         listItemContent.appendChild(listItemFavorites);
     }
 
     if (item.start_date) {
         let listItemStartDate = newEl("div", "list-item-start-date", "mdc-typography--caption");
-        listItemStartDate.textContent = "Published: " + item.start_date;
+        listItemStartDate.textContent = `Published: ${item.start_date}`;
         listItemContent.appendChild(listItemStartDate);
     }
 
