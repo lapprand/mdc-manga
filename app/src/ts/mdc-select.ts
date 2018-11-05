@@ -1,5 +1,5 @@
-import { Selector } from "./select-component";
 import { filterService } from "../../config";
+import { Selector } from "./components/select-component";
 
 const mdcSelect = require('@material/select');
 

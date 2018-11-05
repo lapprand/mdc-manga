@@ -1,8 +1,9 @@
 import { filterService, filterQuery, itemsQuery } from "./config";
+import { Items } from "./src/ts/items/items";
+import "./src/ts/components/top-app-bar";
 import "./src/media/favicon.ico";
 import "./src/ts/mdc-select";
 import "@babel/polyfill";
-import { Items } from "./src/ts/items/items";
 
 declare global {
     interface Window { lazySizesConfig: any; }
@@ -11,7 +12,10 @@ declare global {
 window.lazySizesConfig = window.lazySizesConfig || {};
 window.lazySizesConfig.preloadAfterLoad = true;
 window.lazySizesConfig.loadMode = 1;
+window.lazySizesConfig.loadHidden = false;
+window.lazySizesConfig.expFactor = 4;
 require("lazysizes");
+require("lazysizes/plugins/unload/ls.unload");
 
 
 // get node where items will be placed
@@ -38,5 +42,5 @@ function checkForNextPage() {
     }
 }
 
-window.addEventListener("scroll", checkForNextPage);
-window.addEventListener("touchmove", checkForNextPage);
+window.addEventListener("scroll", checkForNextPage, {passive: true});
+window.addEventListener("touchmove", checkForNextPage, {passive: true});

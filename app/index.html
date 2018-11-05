@@ -16,9 +16,17 @@
 </head>
 
 <body class="mdc-typography">
-    <div id="content">
-        <div class="header">Manga Material</div>
-        <div id="filters"></div>
+    <header class="mdc-top-app-bar">
+        <div class="mdc-top-app-bar__row">
+            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                <span class="header mdc-top-app-bar__title">Manga Material</span>
+            </section>
+            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+                <div id="filters"></div>
+            </section>
+        </div>
+    </header>
+    <div id="content" class="mdc-top-app-bar--fixed-adjust">
         <ul id="grid" class="mdc-image-list my-image-list"></ul>
     </div>
 </body>

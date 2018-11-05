@@ -1,4 +1,4 @@
-import { fadeIn } from "./animate";
+import { fadeIn } from "../animate";
 import { newEl } from "./new-element";
 
 export function newLoader() {

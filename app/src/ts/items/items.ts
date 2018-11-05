@@ -1,8 +1,8 @@
-import { newItemNode } from "../new-item-node";
 import { Item } from "./item.model";
 import { itemsService } from "../../../config";
 import { fadeOut } from "../animate";
-import { newLoader } from "../loader-component";
+import { newLoader } from "../components/loader-component";
+import { newItemNode } from "../components/new-item-node";
 const jikan = require("jikanjs");
 
 export class Items {
@@ -66,7 +66,7 @@ export class Items {
 
     addItems = (items: Item[]) => {
         for (let item of items) {
-            item.birthday = item.birthday? new Date(item.birthday) : undefined;
+            item.birthday = item.birthday ? new Date(item.birthday) : undefined;
             itemsService.addItem(item);
             this.grid.appendChild(newItemNode(item));
         }
