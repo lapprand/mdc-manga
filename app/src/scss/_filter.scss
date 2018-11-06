@@ -1,7 +1,7 @@
 #filters {
     display: flex;
     justify-content: center;
-    padding: 1rem;
+    // padding: 1rem;
 
     .filter {
         align-self: center;
@@ -9,7 +9,9 @@
 }
 
 .select-width {
-    width: 200px;
+    min-width: 120px;
+    max-width: 200px;
+    width: 20vw;
 }
 
 .mdc-select {
