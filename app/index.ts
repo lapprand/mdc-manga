@@ -1,9 +1,13 @@
+import "intersection-observer";
 import { filterService, filterQuery, itemsQuery } from "./config";
 import { Items } from "./src/ts/items/items";
 import "./src/ts/components/top-app-bar";
 import "./src/media/favicon.ico";
 import "./src/ts/mdc-select";
 import "@babel/polyfill";
+import { enableAkitaProdMode } from '@datorama/akita';
+
+enableAkitaProdMode();
 
 declare global {
     interface Window { lazySizesConfig: any; }
@@ -16,7 +20,6 @@ window.lazySizesConfig.loadHidden = false;
 window.lazySizesConfig.expFactor = 4;
 require("lazysizes");
 require("lazysizes/plugins/unload/ls.unload");
-
 
 // get node where items will be placed
 // let grid = document.querySelector("#grid") as HTMLElement;
@@ -31,6 +34,13 @@ typeObs$.forEach(t => {
     items.onTypeChange();
 });
 
+let items$ = itemsQuery.selectAll();
+items$.forEach((its) => {
+    if (!itemsQuery.isEmpty()) {
+        items.addItems(its.pop());
+    };
+});
+
 let scrollHeight, scrollTop, clientHeight;
 function checkForNextPage() {
     scrollHeight = document.body.scrollHeight || document.documentElement.scrollHeight;
@@ -42,5 +52,5 @@ function checkForNextPage() {
     }
 }
 
-window.addEventListener("scroll", checkForNextPage, {passive: true});
-window.addEventListener("touchmove", checkForNextPage, {passive: true});
+window.addEventListener("scroll", checkForNextPage, { passive: true });
+window.addEventListener("touchmove", checkForNextPage, { passive: true });

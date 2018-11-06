@@ -1,23 +1,32 @@
 import { Item } from "./item.model";
-import { itemsService } from "../../../config";
+import { itemsService, itemsQuery } from "../../../config";
 import { fadeOut } from "../animate";
 import { newLoader } from "../components/loader-component";
 import { newItemNode } from "../components/new-item-node";
+import { Observable } from "rxjs";
 const jikan = require("jikanjs");
 
 export class Items {
 
     grid: HTMLElement;
     loader: HTMLElement;
-    items: Item[];
     fetching: boolean;
     private page: number;
     private _itemType: string;
+    private io: IntersectionObserver;
 
     constructor() {
         this.fetching = false;
         this.page = 1;
         this.grid = document.querySelector("#grid");
+        this.io = new IntersectionObserver(
+            entries => {
+                // entries.map(entry => console.log(entry.target));
+            },
+            {
+                /* Using default options. */
+            }
+        );
     }
 
     public get itemType(): string {
@@ -46,7 +55,7 @@ export class Items {
                 console.log(response);
                 await fadeOut([this.loader]);
                 this.grid.removeChild(this.loader);
-                this.addItems(response.top);
+                this.storeItems(response.top);
                 this.fetching = false;
                 this.page++;
             })
@@ -64,11 +73,23 @@ export class Items {
         this.fetchMoreItems();
     }
 
-    addItems = (items: Item[]) => {
+    storeItems = (items: Item[]) => {
         for (let item of items) {
             item.birthday = item.birthday ? new Date(item.birthday) : undefined;
             itemsService.addItem(item);
-            this.grid.appendChild(newItemNode(item));
+            // itemsService.getItems();
+            // let itemNode = newItemNode(item);
+            // this.io.observe(itemNode);
+            // this.grid.appendChild(itemNode);
+        }
+    }
+
+    addItems(...items: Item[]) {
+        if (items.length > 0) {
+            console.log(items)
+            for (let item of items) {
+                this.grid.appendChild(newItemNode(item));
+            }
         }
     }
 }
