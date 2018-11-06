@@ -7,9 +7,6 @@ export class ItemsService {
 
     addItem(item: Item) {
         this.itemsStore.createOrReplace(item.mal_id, item);
-    }
-
-    getItems() {
-        console.log(this.itemsStore.idKey);
+        this.itemsStore.setActive(item.mal_id);
     }
 }

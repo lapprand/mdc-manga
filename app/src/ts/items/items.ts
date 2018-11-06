@@ -39,11 +39,7 @@ export class Items {
 
     private async clearGrid() {
         this.page = 1;
-        let items = document.querySelectorAll(".my-image-list__item");
-        items.forEach(async item => {
-            await fadeOut([item as HTMLElement]);
-            item.remove();
-        });
+        this.grid.textContent = "";
     }
 
     fetchMoreItems() {
@@ -52,7 +48,7 @@ export class Items {
         this.grid.appendChild(this.loader);
         jikan.loadTop(this.itemType, this.page)
             .then(async (response: any) => {
-                console.log(response);
+                // console.log(response);
                 await fadeOut([this.loader]);
                 this.grid.removeChild(this.loader);
                 this.storeItems(response.top);
@@ -86,7 +82,6 @@ export class Items {
 
     addItems(...items: Item[]) {
         if (items.length > 0) {
-            console.log(items)
             for (let item of items) {
                 this.grid.appendChild(newItemNode(item));
             }

@@ -34,10 +34,10 @@ typeObs$.forEach(t => {
     items.onTypeChange();
 });
 
-let items$ = itemsQuery.selectAll();
-items$.forEach((its) => {
+let items$ = itemsQuery.selectActive();
+items$.forEach((item) => {
     if (!itemsQuery.isEmpty()) {
-        items.addItems(its.pop());
+        items.addItems(item);
     };
 });
 

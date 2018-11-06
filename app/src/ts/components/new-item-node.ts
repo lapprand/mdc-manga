@@ -11,7 +11,7 @@ export function newItemNode(item: Item) {
         "mdc-image-list__item",
         "my-image-list__item"
     );
-    addHover(listItem, 1, 16);
+    addHover(listItem, 1, 8);
 
     // image aspect ratio container
     let aspectRatioContainer = newEl(
@@ -23,10 +23,9 @@ export function newItemNode(item: Item) {
     // image
     let listItemImage = newEl(
         "img",
+        "lazyload",
         "mdc-image-list__image"
     );
-    listItemImage.classList.add("lazyload");
-    listItemImage.classList.add("mdc-image-list__image");
     listItemImage.setAttribute("data-sizes", "auto");
     listItemImage.setAttribute("data-optimumx", "1.0");
     listItemImage.setAttribute("data-src", item.image_url);
@@ -40,7 +39,7 @@ export function newItemNode(item: Item) {
     listItem.appendChild(listItemContent);
 
     let listItemTitle = newEl("div", "list-item-title", "mdc-typography--subtitle2");
-    listItemTitle.textContent = (item.name_kanji)? `${item.title} (${item.name_kanji})` : item.title;
+    listItemTitle.textContent = (item.name_kanji) ? `${item.title} (${item.name_kanji})` : item.title;
     listItemContent.appendChild(listItemTitle);
 
     if (item.rank) {
@@ -97,4 +96,38 @@ export function newItemNode(item: Item) {
     fadeIn(listItemImage);
 
     return listItem;
+
+    // let title = (item.name_kanji) ? `${item.title} (${item.name_kanji})` : item.title;
+
+    // let rank = item.rank
+    //     ? `<div class="list-item-rank mdc-typography--caption">Rank: #${item.rank}</div>`
+    //     : "";
+
+    // let birthday = item.birthday
+    //     ? `<div class="list-item-birthday mdc-typography--caption">Birthday: ${item.birthday.toLocaleDateString()}</div>`
+    //     : "";
+
+    // let content =
+    //     `<li class="mdc-image-list__item my-image-list__item">
+    //         <div class="mdc-image-list__image-aspect-container">
+    //             <img class="mdc-image-list__image lazyload" data-sizes="auto" data-src=${item.image_url}></img>
+    //         </div>
+    //         <div class="list-item-content">
+    //             <div class="list-item-title mdc-typography--subtitle2">${title}</div>
+    //             ${rank}
+    //             ${birthday}
+    //             <div class="list-item-caption mdc-typography--caption">Rating: ${item.score}</div>
+    //             <div class="list-item-favorites mdc-typography--caption">Favorites: ${item.favorites}</div>
+    //             <div class="list-item-start-date mdc-typography--caption">Published: ${item.start_date}</div>
+    //             <a class="list-item-anchor" href=${item.url} target="_blank" rel="noopener noreferrer">
+    //                 <button
+    //                  class="mdc-icon-button material-icons mdc-card__action mdc-card__action--icon"
+    //                  aria-pressed="false"
+    //                  aria-label="Open in new tab">open_in_new</button>
+    //             </a>
+    //         </div>
+    //     </li>`;
+
+    // return content;
+
 };
