@@ -19,17 +19,3 @@ html {
     overflow: visible;
     overflow-y: scroll;
 }
-
-.mdc-elevation {
-    &--z1 {
-        @include mdc-elevation(1, $mdc-theme-on-secondary);
-    }
-    
-    &--z8 {
-        @include mdc-elevation(8, $mdc-theme-on-secondary);
-    }
-
-    &--z16 {
-        @include mdc-elevation(16, $mdc-theme-on-secondary);
-    }
-}

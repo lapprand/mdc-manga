@@ -6,6 +6,7 @@ export class ItemsService {
     constructor(private itemsStore: ItemsStore) { }
 
     addItem(item: Item) {
-        this.itemsStore.add(item);
+        this.itemsStore.createOrReplace(item.mal_id, item);
+        this.itemsStore.setActive(item.mal_id);
     }
 }
