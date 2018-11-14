@@ -33,7 +33,7 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.(ico|png|jpg|gif|xml|svg)$/,
+        test: /\.(ico|png|jpg|gif|xml|svg|webmanifest)$/,
         use: [
           {
             loader: 'file-loader',
