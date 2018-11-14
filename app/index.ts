@@ -2,10 +2,10 @@ import "intersection-observer";
 import { filterService, filterQuery, itemsQuery } from "./config";
 import { Items } from "./src/ts/items/items";
 import "./src/ts/components/top-app-bar";
-import "./src/media/favicon.ico";
 import "./src/ts/mdc-select";
 import "@babel/polyfill";
 import { enableAkitaProdMode } from '@datorama/akita';
+import "./favicon";
 
 enableAkitaProdMode();
 
