@@ -5,12 +5,9 @@
   "main": "app",
   "typings": "app",
   "scripts": {
-    "build-lambda": "netlify-lambda build lambda",
     "build-front": "webpack --config webpack-front.config.js --mode production",
     "build": "concurrently \"npm:build-*\"",
-    "serve-lambda": "netlify-lambda serve lambda",
-    "serve-front": "webpack-dev-server --config webpack-front.config.js --mode development --hot --inline",
-    "serve": "concurrently \"npm:serve-*\""
+    "serve": "webpack-dev-server --config webpack-front.config.js --mode development --hot --inline"
   },
   "author": "Arthur Lapprand <lapprand@gmail.com>",
   "license": "ISC",
