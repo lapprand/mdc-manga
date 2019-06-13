@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const DEV_SERVER_HOST = process.env.DEV_SERVER_HOST || '0.0.0.0';
 const DEV_SERVER_PORT = parseInt(process.env.DEV_SERVER_PORT, 10) || 8080;
@@ -103,7 +103,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'app', 'index.html')
     }),
-    new CleanWebpackPlugin([path.resolve(__dirname, 'dist', 'front')]),
+    new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: [path.resolve(__dirname, 'dist', 'front')] }),
     new webpack.HotModuleReplacementPlugin(),
     new ForkTsCheckerWebpackPlugin()
   ],
