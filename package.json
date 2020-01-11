@@ -36,7 +36,7 @@
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
-    "@datorama/akita": "^3.15.1",
+    "@datorama/akita": "^4.17.2",
     "@material/animation": "^1.0.0",
     "@material/button": "^2.3.0",
     "@material/card": "^2.3.0",
