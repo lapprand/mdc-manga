@@ -74,8 +74,8 @@ export class Items {
             item.birthday = item.birthday ? new Date(item.birthday) : undefined;
             itemsService.addItem(item);
             // itemsService.getItems();
-            // let itemNode = newItemNode(item);
-            // this.io.observe(itemNode);
+            let itemNode = newItemNode(item);
+            this.io.observe(itemNode);
             // this.grid.appendChild(itemNode);
         }
     }

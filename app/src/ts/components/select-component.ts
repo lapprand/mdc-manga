@@ -21,7 +21,7 @@ export class Selector {
         this.element.appendChild(newEl("i", "mdc-select__dropdown-icon"));
         
         // selected text
-        this.element.appendChild(newEl("div", "mdc-select__selected-text"));
+        this.element.appendChild(newEl("div", "mdc-select__selected-text", "select-width"));
         
         // menu
         this.element.appendChild(newEl("div", "mdc-select__menu", "mdc-menu", "mdc-menu-surface", "select-width"));
