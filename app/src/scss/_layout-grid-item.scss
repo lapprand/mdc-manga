@@ -1,7 +1,3 @@
-.my-image-list__item {
-    border: 1px solid $mdc-theme-on-surface;
-}
-
 .list-item {
     // overflow-wrap: break-word;
     // word-wrap: break-word;
@@ -37,7 +33,7 @@
         // width: $size;
         // height: $size;
         .mdc-icon-button {
-            @include mdc-icon-button-size($size, $size);
+            @include icon-button.size($size);
         }
     }
 }

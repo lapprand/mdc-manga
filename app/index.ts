@@ -10,6 +10,9 @@ import "./favicon";
 
 enableAkitaProdMode();
 
+import 'lazysizes';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
+
 declare global {
     interface Window { lazySizesConfig: any; }
 }
@@ -19,8 +22,6 @@ window.lazySizesConfig.preloadAfterLoad = true;
 window.lazySizesConfig.loadMode = 1;
 window.lazySizesConfig.loadHidden = false;
 window.lazySizesConfig.expFactor = 4;
-require("lazysizes");
-require("lazysizes/plugins/unload/ls.unload");
 
 // get node where items will be placed
 // let grid = document.querySelector("#grid") as HTMLElement;

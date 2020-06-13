@@ -1,5 +1,27 @@
+// Material Design Components
+@use "@material/linear-progress/mdc-linear-progress";
+@use "@material/menu-surface/mdc-menu-surface";
+@use "@material/icon-button";
+@use "@material/line-ripple/mdc-line-ripple";
+@use "@material/top-app-bar/mdc-top-app-bar";
+@use "@material/typography/mdc-typography";
+@use "@material/image-list";
+@use "@material/elevation/mdc-elevation";
+@use "@material/animation/variables";
+@use "@material/select";
+@use "@material/select/mdc-select";
+@use "@material/shape/functions";
+@use "@material/card";
+@use "@material/list/mdc-list";
+@use "@material/menu/mdc-menu";
+@use "@material/shape/mixins";
+
+@include select.core-styles;
+@include card.core-styles;
+@include icon-button.core-styles;
+
 // Normalize css
-@import url('https://fonts.googleapis.com/css?family=Spicy+Rice');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 @import "../node_modules/normalize.css/normalize.css";
 
 $mdc-theme-primary: #5E388F;
@@ -20,22 +42,6 @@ $mdc-breakpoints: (
   smallhandset: 0px
 );
   
-// Material Design Components
-@import "@material/linear-progress/mdc-linear-progress";
-@import "@material/menu-surface/mdc-menu-surface";
-@import "@material/icon-button/mdc-icon-button";
-@import "@material/line-ripple/mdc-line-ripple";
-@import "@material/top-app-bar/mdc-top-app-bar";
-@import "@material/typography/mdc-typography";
-@import "@material/image-list/mdc-image-list";
-@import "@material/elevation/mdc-elevation";
-@import "@material/animation/variables";
-@import "@material/select/mdc-select";
-@import "@material/shape/functions";
-@import "@material/card/mdc-card";
-@import "@material/list/mdc-list";
-@import "@material/menu/mdc-menu";
-@import "@material/shape/mixins";
 
 @import "src/scss/interpolate.scss";
 
@@ -43,6 +49,6 @@ $mdc-breakpoints: (
 @import "src/scss/header";
 @import "src/scss/filter";
 @import "src/scss/animations";
-@import "src/scss/my-image-list";
-@import "src/scss/my-image-list-item";
+@import "src/scss/layout-grid";
+@import "src/scss/layout-grid-item";
 

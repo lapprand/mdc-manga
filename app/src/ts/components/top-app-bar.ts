@@ -1,5 +1,5 @@
-const mdcTopAppBar = require("@material/top-app-bar/index");
+import { MDCTopAppBar } from '@material/top-app-bar';
 
 // Instantiation
 const topAppBarElement = document.querySelector('.mdc-top-app-bar');
-const topAppBar = new mdcTopAppBar.MDCTopAppBar(topAppBarElement);
+const topAppBar = new MDCTopAppBar(topAppBarElement);
