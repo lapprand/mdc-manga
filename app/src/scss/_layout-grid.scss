@@ -1,0 +1,64 @@
+.layout-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  gap: 16px 16px;
+}
+
+.my-grid-cell {
+  grid-column: span 12;
+}
+
+@media (min-width: #{ map-get($mdc-breakpoints, smallhandset) }) {
+  .layout-grid {
+    gap: 16px 16px;
+  }
+  .my-grid-cell {
+      grid-column: span 12;
+  }
+}
+
+@media (min-width: #{ map-get($mdc-breakpoints, mediumhandset) }) {
+  .layout-grid {
+    gap: 16px 16px;
+  }
+  .my-grid-cell {
+      grid-column: span 6;
+  }
+}
+
+@media (min-width: #{ map-get($mdc-breakpoints, largehandset) }) {
+  .layout-grid {
+    gap: 16px 16px;
+  }
+  .my-grid-cell {
+      grid-column: span 6;
+  }
+}
+
+@media (min-width: #{ map-get($mdc-breakpoints, tablet) }) {
+  .layout-grid {
+    gap: 24px 24px;
+  }
+  .my-grid-cell {
+      grid-column: span 4;
+  }
+}
+
+@media (min-width: #{ map-get($mdc-breakpoints, desktop) }) {
+  .layout-grid {
+    gap: 24px 24px;
+  }
+  .my-grid-cell {
+      grid-column: span 3;
+  }
+}
+
+@media (min-width: #{ map-get($mdc-breakpoints, largedesktop) }) {
+  .layout-grid {
+    gap: 24px 24px;
+  }
+  .my-grid-cell {
+      grid-column: span 2;
+  }
+}

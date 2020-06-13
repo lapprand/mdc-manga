@@ -4,7 +4,7 @@ import { fadeOut } from "../animate";
 import { newLoader } from "../components/loader-component";
 import { newItemNode } from "../components/new-item-node";
 import { Observable } from "rxjs";
-const jikan = require("jikanjs");
+import axios from "axios"
 
 export class Items {
 
@@ -46,12 +46,12 @@ export class Items {
         this.fetching = true;
         this.loader = newLoader();
         this.grid.appendChild(this.loader);
-        jikan.loadTop(this.itemType, this.page)
+        axios.get(`https://api.jikan.moe/v3/top/${this.itemType}/${this.page}`)
             .then(async (response: any) => {
                 // console.log(response);
                 await fadeOut([this.loader]);
                 this.grid.removeChild(this.loader);
-                this.storeItems(response.top);
+                this.storeItems(response.data.top);
                 this.fetching = false;
                 this.page++;
             })

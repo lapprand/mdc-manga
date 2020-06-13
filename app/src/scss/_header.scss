@@ -1,13 +1,7 @@
 // after media queries so font can be properly applied
 .header {
-    // @include interpolate(font-size, 360px, 992px, 24px, 60px);
-    font-family: 'Spicy Rice', cursive;
-    // border-bottom: 1px solid $mdc-theme-on-surface;
-    // border-right: 1px solid $mdc-theme-surface;
-    // border-left: 1px solid $mdc-theme-surface;
-    // border-top: 1px solid $mdc-theme-on-surface;
-    // background: $mdc-theme-surface;
+    @include interpolate(font-size, 360px, 992px, 18px, 26px);
+    font-family: 'Fredoka One', cursive;
     color: $mdc-theme-on-primary;
     text-align: center;
-    // padding: 1rem 0px;
 }

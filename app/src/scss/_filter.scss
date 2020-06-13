@@ -1,22 +1,5 @@
-#filters {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 1rem;
-
-    .filter {
-        align-self: center;
-    }
-}
-
 .select-width {
     min-width: 150px;
     max-width: 300px;
-    width: 20vw;
-}
-
-.mdc-select {
-    @include mdc-select-hover-bottom-line-color($mdc-theme-secondary);
-    @include mdc-select-focused-bottom-line-color($mdc-theme-secondary);
-    @include mdc-select-focused-label-color($mdc-theme-secondary);
+    // width: auto;
 }
