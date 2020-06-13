@@ -3,3 +3,17 @@
     max-width: 300px;
     // width: auto;
 }
+
+.mdc-select {
+  // @include select.ink-color($mdc-theme-secondary);
+  // @include select.label-color($mdc-theme-secondary);
+  @include select.focused-label-color($mdc-theme-secondary);
+  @include select.bottom-line-color($mdc-theme-on-primary);
+  @include select.hover-bottom-line-color($mdc-theme-on-primary);
+  @include select.focused-bottom-line-color($mdc-theme-secondary);
+  @include select.container-fill-color($mdc-theme-on-primary);
+}
+
+.mdc-list {
+  @include list.item-graphic-fill-color($mdc-theme-on-primary)
+}

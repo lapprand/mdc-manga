@@ -12,11 +12,12 @@
 @use "@material/select/mdc-select";
 @use "@material/shape/functions";
 @use "@material/card";
-@use "@material/list/mdc-list";
+@use "@material/list";
 @use "@material/menu/mdc-menu";
 @use "@material/shape/mixins";
 
 @include select.core-styles;
+@include list.core-styles;
 @include card.core-styles;
 @include icon-button.core-styles;
 
