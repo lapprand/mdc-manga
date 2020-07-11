@@ -12,6 +12,8 @@
 @media (min-width: #{ map-get($mdc-breakpoints, smallhandset) }) {
   .layout-grid {
     gap: 16px 16px;
+    margin-left: 5vw;
+    margin-right: 5vw;
   }
   .my-grid-cell {
       grid-column: span 12;
@@ -21,6 +23,8 @@
 @media (min-width: #{ map-get($mdc-breakpoints, mediumhandset) }) {
   .layout-grid {
     gap: 16px 16px;
+    margin-left: 5vw;
+    margin-right: 5vw;
   }
   .my-grid-cell {
       grid-column: span 6;
@@ -30,6 +34,8 @@
 @media (min-width: #{ map-get($mdc-breakpoints, largehandset) }) {
   .layout-grid {
     gap: 16px 16px;
+    margin-left: 5vw;
+    margin-right: 5vw;
   }
   .my-grid-cell {
       grid-column: span 6;
@@ -39,6 +45,8 @@
 @media (min-width: #{ map-get($mdc-breakpoints, tablet) }) {
   .layout-grid {
     gap: 24px 24px;
+    margin-left: 5vw;
+    margin-right: 5vw;
   }
   .my-grid-cell {
       grid-column: span 4;
@@ -48,6 +56,8 @@
 @media (min-width: #{ map-get($mdc-breakpoints, desktop) }) {
   .layout-grid {
     gap: 24px 24px;
+    margin-left: 10vw;
+    margin-right: 10vw;
   }
   .my-grid-cell {
       grid-column: span 3;
@@ -57,6 +67,8 @@
 @media (min-width: #{ map-get($mdc-breakpoints, largedesktop) }) {
   .layout-grid {
     gap: 24px 24px;
+    margin-left: 10vw;
+    margin-right: 10vw;
   }
   .my-grid-cell {
       grid-column: span 2;
