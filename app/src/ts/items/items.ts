@@ -46,12 +46,17 @@ export class Items {
         this.fetching = true;
         this.loader = newLoader();
         this.grid.appendChild(this.loader);
-        axios.get(`https://api.jikan.moe/v3/top/${this.itemType}/${this.page}`)
+        axios.get(`https://api.jikan.moe/v4/top/${this.itemType}?page=${this.page}`)
             .then(async (response: any) => {
                 // console.log(response);
                 await fadeOut([this.loader]);
                 this.grid.removeChild(this.loader);
-                this.storeItems(response.data.top);
+                const items = response.data.data?.map((item: any) => ({
+                    ...item,
+                    title: item.title || item.name,
+                    image_url: item.images.webp?.image_url || item.images.jpg?.image_url
+                }))
+                this.storeItems(items);
                 this.fetching = false;
                 this.page++;
             })

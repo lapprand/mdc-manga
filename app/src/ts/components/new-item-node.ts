@@ -28,7 +28,7 @@ export function newItemNode(item: Item) {
     // cardMedia.style.backgroundRepeat = "no-repeat"
     // cardMedia.style.backgroundPosition = "center top"
     // cardMedia.style.backgroundSize = "auto"
-    // cardMedia.style.height = "400px"
+    cardMedia.style.height = "100%"
     // cardMedia.style.width = "100%"
 
     // const cardMediaContent = newEl("div", "mdc-card__media-content")
@@ -42,6 +42,8 @@ export function newItemNode(item: Item) {
         "lazyload"
     )
     cardImage.style.width = "100%"
+    cardImage.style.height = "100%"
+    cardImage.style.objectFit = "cover"
     cardImage.setAttribute("data-sizes", "auto")
     cardImage.setAttribute("data-optimumx", "1.0")
     cardImage.setAttribute("data-src", item.image_url)
