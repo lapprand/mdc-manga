@@ -1,4 +1,4 @@
-// Material Design Components
+// Material Design Components and internal modules - all @use statements must come first
 @use "@material/linear-progress/mdc-linear-progress";
 @use "@material/menu-surface/mdc-menu-surface";
 @use "@material/icon-button";
@@ -16,40 +16,22 @@
 @use "@material/menu/mdc-menu";
 @use "@material/shape/mixins";
 
-@include select.core-styles;
-@include list.core-styles;
-@include card.core-styles;
-@include icon-button.core-styles;
+// Internal SCSS modules using Sass 2.0+ module system
+@use "src/scss/variables" as *;
+@use "src/scss/interpolate" as *;
+@use "src/scss/base" as *;
+@use "src/scss/header" as *;
+@use "src/scss/filter" as *;
+@use "src/scss/animations" as *;
+@use "src/scss/layout-grid" as *;
+@use "src/scss/layout-grid-item" as *;
 
-// Normalize css
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+// Note: Material Design v14 includes base styles by default, core-styles mixins are no longer needed
+// @include select.core-styles;
+// @include list.core-styles;
+// @include card.core-styles;
+// @include icon-button.core-styles;
+
+// Normalize css and external resources
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
 @import "../node_modules/normalize.css/normalize.css";
-
-$mdc-theme-primary: #5E388F;
-$mdc-theme-on-primary: #A185C6;
-$mdc-theme-secondary: #D3C647;
-$mdc-theme-on-secondary: #FFF7A3;
-$mdc-theme-surface: #A185C6;
-$mdc-theme-on-surface: #48227B;
-$mdc-theme-background: #000000;
-$mdc-theme-on-background: #FFFFFF;
-
-$mdc-breakpoints: (
-  largedesktop: 1200px,
-  desktop: 992px,
-  tablet: 720px,
-  largehandset: 480px,
-  mediumhandset: 400px,
-  smallhandset: 0px
-);
-  
-
-@import "src/scss/interpolate.scss";
-
-@import "src/scss/base";
-@import "src/scss/header";
-@import "src/scss/filter";
-@import "src/scss/animations";
-@import "src/scss/layout-grid";
-@import "src/scss/layout-grid-item";
-

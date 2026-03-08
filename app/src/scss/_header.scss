@@ -1,7 +1,10 @@
+@use "variables" as *;
+@use "interpolate" as *;
+
 // after media queries so font can be properly applied
 .header {
-    @include interpolate(font-size, 360px, 992px, 18px, 26px);
-    font-family: 'Fredoka One', cursive;
-    color: $mdc-theme-on-primary;
-    text-align: center;
+  @include interpolate(font-size, 360px, 992px, 18px, 26px);
+  font-family: "Fredoka One", cursive;
+  color: $mdc-theme-on-primary;
+  text-align: center;
 }

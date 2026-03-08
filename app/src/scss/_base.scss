@@ -1,21 +1,31 @@
-$enable-shadows: true;
+@use "variables" as *;
 
 #loader {
-    z-index: 1;
-    width: 100%;
-    height: auto;
-    padding: 1rem;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  padding: 1rem;
 }
 
 #grid {
-    padding: 1rem;
+  padding: 1rem;
 }
 
 html {
-    background-image: linear-gradient(rgba(72, 34, 123, 0.4), rgba(72, 34, 123, 0.4)), url("src/media/cats_pattern_by_rhoda_the_echidna.png");
-    background-repeat: repeat;
-    background-position: top;
-    scroll-behavior: smooth;
-    overflow: visible;
-    overflow-y: scroll;
+  height: 100%;
+  scroll-behavior: smooth;
+  overflow: visible;
+  overflow-y: scroll;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-image:
+    linear-gradient(rgba(72, 34, 123, 0.4), rgba(72, 34, 123, 0.4)),
+    url("src/media/cats_pattern_by_rhoda_the_echidna.png");
+  background-repeat: repeat;
+  background-position: top;
+  background-attachment: fixed;
 }

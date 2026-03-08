@@ -1,0 +1,22 @@
+// Global theme variables - centralized configuration
+// Export with @forward so they're available to consumers via "as *"
+
+$mdc-theme-primary: #5e388f;
+$mdc-theme-on-primary: #a185c6;
+$mdc-theme-secondary: #d3c647;
+$mdc-theme-on-secondary: #fff7a3;
+$mdc-theme-surface: #a185c6;
+$mdc-theme-on-surface: #48227b;
+$mdc-theme-background: #000000;
+$mdc-theme-on-background: #ffffff;
+
+$enable-shadows: true;
+
+$mdc-breakpoints: (
+  largedesktop: 1200px,
+  desktop: 992px,
+  tablet: 720px,
+  largehandset: 480px,
+  mediumhandset: 400px,
+  smallhandset: 0px,
+);

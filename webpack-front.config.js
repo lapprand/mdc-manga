@@ -36,14 +36,15 @@ module.exports = {
       },
       {
         test: /\.(ico|png|jpg|gif|xml|svg|webmanifest)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]'
-            }
+        type: 'asset/resource',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 8 * 1024 // 8kb
           }
-        ]
+        },
+        generator: {
+          filename: 'images/[name][ext]'
+        }
       },
       {
         test: /\.(html)$/,
@@ -85,15 +86,19 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              plugins: () => [autoprefixer()]
+              postcssOptions: {
+                plugins: [autoprefixer()]
+              }
             }
           },
           {
             loader: 'sass-loader',
             options: {
               sassOptions: {
-                includePaths: ['./node_modules']
+                includePaths: ['./node_modules'],
+                quietDeps: true
               },
+              warnRuleAsWarning: false,
 
               // Prefer Dart Sass
               implementation: require('sass'),
@@ -167,18 +172,23 @@ module.exports = {
   devServer: {
     host: DEV_SERVER_HOST,
     port: DEV_SERVER_PORT,
-    disableHostCheck: true,
+    allowedHosts: 'all',
     proxy: {
       "/.netlify": {
         target: "http://localhost:9000",
         pathRewrite: { "^/.netlify/functions": "" }
       }
     },
-    contentBase: path.join(__dirname, 'app'),
-    watchContentBase: true,
-    publicPath: '/',
-    inline: true,
+    static: {
+      directory: path.join(__dirname, 'app'),
+      watch: true
+    },
     hot: true,
-    clientLogLevel: 'debug'
+    client: {
+      logging: 'verbose'
+    }
+  },
+  performance: {
+    hints: false
   }
 };

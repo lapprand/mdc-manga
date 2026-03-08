@@ -31,13 +31,13 @@ let items = new Items();
 filterService.updateItemType("manga");
 
 let typeObs$ = filterQuery.select(filter => filter.itemType);
-typeObs$.forEach(t => {
+(typeObs$ as any).subscribe((t: any) => {
     items.itemType = t;
     items.onTypeChange();
 });
 
 let items$ = itemsQuery.selectActive();
-items$.forEach((item: any) => {
+(items$ as any).subscribe((item: any) => {
     if (itemsQuery.hasEntity()) {
         items.addItems(item);
     };

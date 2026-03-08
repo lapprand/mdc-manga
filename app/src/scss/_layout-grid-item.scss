@@ -1,39 +1,78 @@
+@use "variables" as *;
+
+// Ensure cards with absolute positioned content are properly scoped
+.mdc-card {
+  position: relative;
+}
+
 .list-item {
-    // overflow-wrap: break-word;
-    // word-wrap: break-word;
+  // overflow-wrap: break-word;
+  // word-wrap: break-word;
 
-    // word-break: break-all;
-    // word-break: break-word;
+  // word-break: break-all;
+  // word-break: break-word;
 
-    // hyphens: auto;
+  // hyphens: auto;
 
-    &-content {
-        background: rgba(161, 133, 198, 0.9);
-        padding: .5rem;
-        color: $mdc-theme-on-surface;
-        width: calc(100% - 1rem);
-        
-        display: block;
-        position: absolute;
-        bottom: 0;
-        left: 0;
+  &-content {
+    background: rgba(161, 133, 198, 0.9);
+    padding: 0.5rem;
+    color: $mdc-theme-on-surface;
+    width: calc(100% - 1rem);
+
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  &-title {
+    padding-bottom: 0.5rem;
+  }
+
+  &-anchor {
+    position: absolute;
+    bottom: 0.25rem;
+    right: 0.25rem;
+    z-index: 1;
+
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.1);
     }
 
-    &-title {
-        padding-bottom: .5rem;
-    }
+    .mdc-icon-button {
+      width: 24px;
+      height: 24px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 50%;
+      transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+      border: none;
+      cursor: pointer;
 
-    &-anchor {
-        position: absolute;
-        bottom: .25rem;
-        right: .25rem;
-        $size: 24px;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.6);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
 
-        color: transparent;
-        // width: $size;
-        // height: $size;
-        .mdc-icon-button {
-            @include icon-button.size($size);
-        }
+      &:active {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+
+      &.material-icons {
+        font-size: 20px;
+        line-height: 1;
+      }
     }
+  }
 }
