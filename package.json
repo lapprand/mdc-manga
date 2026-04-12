@@ -54,7 +54,7 @@
     "@material/top-app-bar": "^14.0.0",
     "@material/typography": "^14.0.0",
     "@types/node": "^20.10.6",
-    "axios": "^1.6.5",
+    "axios": "^1.15.0",
     "intersection-observer": "^0.12.2",
     "lazysizes": "^5.3.2",
     "normalize.css": "^8.0.1",
