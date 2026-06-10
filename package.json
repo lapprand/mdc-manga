@@ -7,7 +7,9 @@
   "scripts": {
     "build-front": "webpack --config webpack-front.config.js --mode production",
     "build": "concurrently \"npm:build-*\"",
-    "serve": "webpack-dev-server --config webpack-front.config.js --mode development"
+    "serve": "webpack-dev-server --config webpack-front.config.js --mode development",
+    "deploy": "npm run build && wrangler deploy",
+    "preview": "npm run build && wrangler dev"
   },
   "author": "Arthur Lapprand <lapprand@gmail.com>",
   "license": "ISC",
@@ -34,7 +36,8 @@
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1",
-    "webpack-node-externals": "^3.0.0"
+    "webpack-node-externals": "^3.0.0",
+    "wrangler": "^4.99.0"
   },
   "dependencies": {
     "@datorama/akita": "^8.0.1",
