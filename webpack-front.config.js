@@ -19,7 +19,7 @@ module.exports = {
     path.join(__dirname, 'app', 'index.scss')
   ],
   output: {
-    path: path.resolve(__dirname, 'dist', 'front'),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
   module: {
@@ -165,7 +165,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'app', 'index.html')
     }),
-    new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: [path.resolve(__dirname, 'dist', 'front')] }),
+    new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: [path.resolve(__dirname, 'dist')] }),
     new webpack.HotModuleReplacementPlugin(),
     new ForkTsCheckerWebpackPlugin()
   ],
