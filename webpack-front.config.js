@@ -173,12 +173,6 @@ module.exports = {
     host: DEV_SERVER_HOST,
     port: DEV_SERVER_PORT,
     allowedHosts: 'all',
-    proxy: {
-      "/.netlify": {
-        target: "http://localhost:9000",
-        pathRewrite: { "^/.netlify/functions": "" }
-      }
-    },
     static: {
       directory: path.join(__dirname, 'app'),
       watch: true
