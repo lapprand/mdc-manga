@@ -19,11 +19,18 @@ export class Selector {
 
         this.selectAnchor = newEl("div", "mdc-select__anchor")
         this.selectAnchor.setAttribute("aria-labelledby", "outlined-select-label")
+        this.selectAnchor.setAttribute("tabindex", "0")
+        this.selectAnchor.setAttribute("role", "button")
+        this.selectAnchor.setAttribute("aria-haspopup", "listbox")
+        this.selectAnchor.setAttribute("aria-expanded", "false")
+        this.selectAnchor.setAttribute("aria-controls", "category-select-menu")
         this.selectAnchor.appendChild(newEl("span", "mdc-select__ripple"))
         
         this.selectedTextInput = newEl("input", "mdc-select__selected-text") as HTMLInputElement
         this.selectedTextInput.setAttribute("type", "text")
-        this.selectedTextInput.setAttribute("disabled", "true")
+        // readonly (not disabled): a disabled input swallows pointer events, so
+        // clicking the visible value would do nothing — only the edges of the
+        // control would open the menu.
         this.selectedTextInput.setAttribute("readonly", "true")
         this.selectAnchor.appendChild(this.selectedTextInput)
         
@@ -46,6 +53,8 @@ export class Selector {
         
         // menu
         this.menu = newEl("div", "mdc-select__menu", "mdc-menu", "mdc-menu-surface", "select-width")
+        this.menu.setAttribute("id", "category-select-menu")
+        this.menu.setAttribute("role", "listbox")
         this.menu.style.width = "100%"
         this.element.appendChild(this.menu)
         
@@ -62,9 +71,14 @@ export class Selector {
             }
         })
         
-        // Add keyboard support
-        this.element.addEventListener("keydown", (e: KeyboardEvent) => {
-            if (e.key === "Escape") {
+        // Keyboard support: open on Enter/Space/ArrowDown, close on Escape.
+        // The anchor is focusable (tabindex 0) and MDC's own keydown handling
+        // also runs, so item navigation inside the open menu works too.
+        this.selectAnchor.addEventListener("keydown", (e: KeyboardEvent) => {
+            if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
+                e.preventDefault()
+                this.openMenu()
+            } else if (e.key === "Escape") {
                 this.closeMenu()
             }
         })
@@ -93,11 +107,14 @@ export class Selector {
         this.menu.classList.add("mdc-menu-surface--open")
         this.element.classList.add("mdc-select--activated")
         this.floatingLabel.classList.add("mdc-floating-label--float-above")
+        this.selectAnchor.setAttribute("aria-expanded", "true")
     }
     
     closeMenu() {
         this.isOpen = false
         this.menu.classList.remove("mdc-menu-surface--open")
+        this.element.classList.remove("mdc-select--activated")
+        this.selectAnchor.setAttribute("aria-expanded", "false")
     }
     
     createItem(text: string, dataValue: string): HTMLLIElement {
@@ -137,6 +154,8 @@ export class Selector {
         
         // Close menu after selection
         this.closeMenu()
+        // Keep focus on the control so keyboard users can immediately reopen
+        this.selectAnchor.focus()
     }
 
     addItem(item: HTMLLIElement) {

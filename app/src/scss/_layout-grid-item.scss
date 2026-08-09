@@ -1,78 +1,164 @@
+@use "sass:map";
 @use "variables" as *;
 
-// Ensure cards with absolute positioned content are properly scoped
+// Cards are a column layout: image on top, details directly below — no gap.
+// height: 100% makes each card fill its grid cell, so all cards in a row
+// share the same height regardless of how many detail lines they have.
 .mdc-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: $mdc-theme-surface;
+}
+
+// Portrait canvas for the cover. The ratio is tuned per breakpoint so the
+// image height stays proportional to the card width at every screen size.
+.mdc-card__media {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background-color: rgba(72, 34, 123, 0.15);
+}
+
+@media (min-width: #{ map.get($mdc-breakpoints, mediumhandset) }) {
+  .mdc-card__media {
+    aspect-ratio: 3 / 4;
+  }
+}
+
+@media (min-width: #{ map.get($mdc-breakpoints, largehandset) }) {
+  .mdc-card__media {
+    aspect-ratio: 2 / 3;
+  }
+}
+
+@media (min-width: #{ map.get($mdc-breakpoints, tablet) }) {
+  .mdc-card__media {
+    aspect-ratio: 2 / 3;
+  }
+}
+
+@media (min-width: #{ map.get($mdc-breakpoints, desktop) }) {
+  .mdc-card__media {
+    aspect-ratio: 2 / 3;
+  }
+}
+
+@media (min-width: #{ map.get($mdc-breakpoints, largedesktop) }) {
+  .mdc-card__media {
+    aspect-ratio: 2 / 3;
+  }
+}
+
+// Lazy images fade in once loaded; the media background acts as a placeholder
+img.lazyload {
+  display: block;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.3s ease;
+}
+
+img.lazyloaded {
+  opacity: 1;
+}
+
+// Subtle zoom on the cover when hovering the card
+.mdc-card:hover .mdc-card__media img {
+  transform: scale(1.05);
 }
 
 .list-item {
-  // overflow-wrap: break-word;
-  // word-wrap: break-word;
-
-  // word-break: break-all;
-  // word-break: break-word;
-
-  // hyphens: auto;
-
   &-content {
-    background: rgba(161, 133, 198, 0.9);
-    padding: 0.5rem;
+    // Lighter surface tint so the on-surface text stays readable.
+    // flex: 1 stretches the details down to the card's bottom edge, so the
+    // space below a short details block is filled instead of left empty.
+    background-color: lighten($mdc-theme-surface, 18%);
+    padding: 0.5rem 2.75rem 0.5rem 0.5rem;
     color: $mdc-theme-on-surface;
-    width: calc(100% - 1rem);
 
-    display: block;
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
   }
 
   &-title {
     padding-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
   }
 
-  &-anchor {
-    position: absolute;
-    bottom: 0.25rem;
-    right: 0.25rem;
-    z-index: 1;
+  &-rank,
+  &-birthday,
+  &-score,
+  &-favorites,
+  &-start-date {
+    line-height: 1.4;
+  }
+}
 
-    text-decoration: none;
+// Loader shown in the grid while a page of items is being fetched.
+// Spans the full grid width so it centers under the cards.
+#loader {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+}
+
+.loader-spinner {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.25);
+  border-top-color: $mdc-theme-secondary;
+  animation: loader-spin 0.9s linear infinite;
+}
+
+// The whole card is the link target; the icon is a decorative affordance
+.list-item-anchor {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  text-decoration: none;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid $mdc-theme-on-surface;
+    outline-offset: -2px;
+  }
+
+  .mdc-icon-button {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: $mdc-theme-on-surface;
+    border-radius: 50%;
+    transition:
+      transform 0.2s ease,
+      background-color 0.2s ease,
+      box-shadow 0.2s ease;
+    border: none;
     cursor: pointer;
-    transition: transform 0.2s ease;
 
     &:hover {
       transform: scale(1.1);
+      background-color: lighten($mdc-theme-on-surface, 10%);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
     }
 
-    .mdc-icon-button {
-      width: 24px;
-      height: 24px;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      background-color: rgba(0, 0, 0, 0.2);
-      border-radius: 50%;
-      transition:
-        background-color 0.2s ease,
-        box-shadow 0.2s ease;
-      border: none;
-      cursor: pointer;
-
-      &:hover {
-        background-color: rgba(0, 0, 0, 0.6);
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-      }
-
-      &:active {
-        background-color: rgba(0, 0, 0, 0.8);
-      }
-
-      &.material-icons {
-        font-size: 20px;
-        line-height: 1;
-      }
+    &.material-icons {
+      font-size: 20px;
+      line-height: 1;
     }
   }
 }

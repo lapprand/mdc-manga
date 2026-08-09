@@ -70,8 +70,13 @@
 @media (min-width: #{ map.get($mdc-breakpoints, largedesktop) }) {
   .layout-grid {
     gap: 24px 24px;
-    margin-left: 10vw;
-    margin-right: 10vw;
+    // Center and cap the grid so cards stay a sane size on very wide screens
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1600px;
+    box-sizing: border-box;
+    padding-left: clamp(1rem, 10vw, 10rem);
+    padding-right: clamp(1rem, 10vw, 10rem);
   }
   .my-grid-cell {
     grid-column: span 2;

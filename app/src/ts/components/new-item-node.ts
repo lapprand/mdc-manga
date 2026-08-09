@@ -3,6 +3,13 @@ import { addHover } from "../mdc-hover"
 import { newEl } from "./new-element"
 import { fadeIn } from "../animate"
 
+function formatBirthday(date: Date) {
+    if (date.getFullYear() === 2000) {
+        return date.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+    }
+    return date.toLocaleDateString();
+}
+
 export function newItemNode(item: Item) {
 
     // item wrapper
@@ -20,20 +27,10 @@ export function newItemNode(item: Item) {
         "mdc-card",
         "mdc-card-outlined"
     )
-    itemCard.style.height = "100%"
     itemCell.appendChild(itemCard)
 
+    // image canvas with a fixed portrait ratio so the details below never overlap it
     const cardMedia = newEl("div", "mdc-card__media")
-    // cardMedia.style.backgroundImage = `url("${item.image_url}")`
-    // cardMedia.style.backgroundRepeat = "no-repeat"
-    // cardMedia.style.backgroundPosition = "center top"
-    // cardMedia.style.backgroundSize = "auto"
-    cardMedia.style.height = "100%"
-    // cardMedia.style.width = "100%"
-
-    // const cardMediaContent = newEl("div", "mdc-card__media-content")
-
-    // cardMedia.appendChild(cardMediaContent)
     itemCard.appendChild(cardMedia)
 
     // image
@@ -47,6 +44,7 @@ export function newItemNode(item: Item) {
     cardImage.setAttribute("data-sizes", "auto")
     cardImage.setAttribute("data-optimumx", "1.0")
     cardImage.setAttribute("data-src", item.image_url)
+    cardImage.setAttribute("alt", item.title)
     cardMedia.appendChild(cardImage)
 
     // item details
@@ -70,7 +68,7 @@ export function newItemNode(item: Item) {
 
     if (item.birthday) {
         let listItemBirthday = newEl("div", "list-item-birthday", "mdc-typography--caption")
-        listItemBirthday.textContent = `Birthday: ${item.birthday.toLocaleDateString()}`
+        listItemBirthday.textContent = `Birthday: ${formatBirthday(item.birthday)}`
         listItemContent.appendChild(listItemBirthday)
     }
 
@@ -92,22 +90,22 @@ export function newItemNode(item: Item) {
         listItemContent.appendChild(listItemStartDate)
     }
 
-    // set icon with link to manga details
+    // whole card is a link; the icon is a decorative affordance
     let anchor = newEl("a", "list-item-anchor")
     anchor.setAttribute("href", item.url)
     anchor.setAttribute("target", "_blank")
     anchor.setAttribute("rel", "noopener noreferrer")
-    listItemContent.appendChild(anchor)
+    anchor.setAttribute("aria-label", `Open ${item.title} in a new tab`)
+    itemCard.appendChild(anchor)
 
     let iconButton = newEl(
-        "button",
+        "span",
         "mdc-icon-button",
         "material-icons",
         "mdc-card__action",
         "mdc-card__action--icon"
     )
-    iconButton.setAttribute("aria-pressed", "false")
-    iconButton.setAttribute("aria-label", "Open in new tab")
+    iconButton.setAttribute("aria-hidden", "true")
     iconButton.textContent = "open_in_new"
     anchor.appendChild(iconButton)
 

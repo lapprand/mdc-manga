@@ -10,6 +10,12 @@
     }
 }
 
+@keyframes loader-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 @keyframes fade-out {
     from {
         // transform: translateY(0);

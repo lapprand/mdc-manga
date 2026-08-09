@@ -1,8 +1,8 @@
 @use "variables" as *;
 
 .select-width {
-  min-width: 160px;
-  max-width: 280px;
+  min-width: 180px;
+  max-width: 320px;
 }
 
 .mdc-select {
@@ -15,26 +15,37 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: rgba($mdc-theme-surface, 0.5);
-    padding: 0.875rem 1.125rem;
+    background-color: rgba($mdc-theme-surface, 0.6);
+    min-height: 56px;
+    padding: 0.5rem 1.25rem;
     border: 2px solid $mdc-theme-on-surface;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     user-select: none;
     width: 100%;
     box-sizing: border-box;
 
     &:hover {
-      background-color: rgba($mdc-theme-surface, 0.7);
-      box-shadow: 0 4px 12px rgba($mdc-theme-on-surface, 0.2);
+      background-color: rgba($mdc-theme-surface, 0.85);
+      box-shadow: 0 4px 14px rgba($mdc-theme-on-surface, 0.25);
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    &:focus-visible {
+      outline: 2px solid $mdc-theme-secondary;
+      outline-offset: 2px;
     }
   }
 
   // Selected text
   .mdc-select__selected-text {
     color: $mdc-theme-on-surface;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 600;
     flex: 1;
     background: transparent;
@@ -42,12 +53,13 @@
     outline: none;
     padding: 0;
     margin: 0;
+    cursor: pointer;
   }
 
   // Dropdown arrow icon
   .mdc-select__dropdown-icon {
     color: $mdc-theme-on-surface;
-    font-size: 1rem;
+    font-size: 1.25rem;
     margin-left: 0.75rem;
     pointer-events: none;
     transition: transform 0.3s ease;
@@ -81,12 +93,19 @@
     display: none;
   }
 
+  // Keyboard focus (class added by the MDC JS component)
+  &.mdc-select--focused {
+    .mdc-select__anchor {
+      border-color: $mdc-theme-secondary;
+    }
+  }
+
   // Active/open state
   &.mdc-select--activated {
     .mdc-select__anchor {
-      background-color: rgba($mdc-theme-surface, 0.8);
+      background-color: rgba($mdc-theme-surface, 0.9);
       border-color: $mdc-theme-secondary;
-      box-shadow: 0 4px 12px rgba($mdc-theme-on-surface, 0.3);
+      box-shadow: 0 4px 14px rgba($mdc-theme-on-surface, 0.3);
     }
 
     .mdc-select__dropdown-icon {
