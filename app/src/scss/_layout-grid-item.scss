@@ -14,8 +14,11 @@
 
 // Portrait canvas for the cover. The ratio is tuned per breakpoint so the
 // image height stays proportional to the card width at every screen size.
+// flex-shrink: 0 keeps the cover at its aspect ratio if a details block ever
+// exceeds the row height.
 .mdc-card__media {
   aspect-ratio: 4 / 5;
+  flex-shrink: 0;
   overflow: hidden;
   background-color: rgba(72, 34, 123, 0.15);
 }

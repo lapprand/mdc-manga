@@ -115,13 +115,10 @@
   }
 }
 
-// Dropdown menu styling
+// Dropdown menu styling. Position, width and open/close animation are owned by
+// the MDC JS (it writes inline top/left and toggles mdc-menu-surface--open);
+// this block only layers the custom theme on top.
 .mdc-select__menu {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
-  right: 0;
-  width: 100%;
   background: rgba($mdc-theme-surface, 0.95);
   border: 2px solid $mdc-theme-on-surface;
   border-radius: 8px;
@@ -130,13 +127,6 @@
   max-height: 280px;
   overflow-y: auto;
   overflow-x: hidden;
-  display: none;
-  animation: slideOut 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-
-  &.mdc-menu-surface--open {
-    display: block;
-    animation: slideIn 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  }
 
   // Scrollbar styling
   &::-webkit-scrollbar {
@@ -155,28 +145,6 @@
     &:hover {
       background: rgba($mdc-theme-on-surface, 0.5);
     }
-  }
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideOut {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-8px);
   }
 }
 

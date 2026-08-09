@@ -10,7 +10,6 @@ export class Selector {
     floatingLabel: HTMLElement
     list: HTMLUListElement
     items: Set<HTMLLIElement> = new Set()
-    isOpen: boolean = false
     
     constructor(labelText: string) {
         
@@ -19,19 +18,24 @@ export class Selector {
 
         this.selectAnchor = newEl("div", "mdc-select__anchor")
         this.selectAnchor.setAttribute("aria-labelledby", "outlined-select-label")
+        // MDCSelect is the single owner of open/close/keyboard state (it manages
+        // aria-expanded, mdc-select--activated and mdc-select--focused itself).
+        // Note: aria-controls on the anchor would be mistaken for a helper-text
+        // pointer by MDCSelect, so it is deliberately omitted here.
         this.selectAnchor.setAttribute("tabindex", "0")
         this.selectAnchor.setAttribute("role", "button")
         this.selectAnchor.setAttribute("aria-haspopup", "listbox")
         this.selectAnchor.setAttribute("aria-expanded", "false")
-        this.selectAnchor.setAttribute("aria-controls", "category-select-menu")
         this.selectAnchor.appendChild(newEl("span", "mdc-select__ripple"))
         
         this.selectedTextInput = newEl("input", "mdc-select__selected-text") as HTMLInputElement
         this.selectedTextInput.setAttribute("type", "text")
         // readonly (not disabled): a disabled input swallows pointer events, so
         // clicking the visible value would do nothing — only the edges of the
-        // control would open the menu.
+        // control would open the menu. tabindex -1 prevents the input from being
+        // a second tab stop; the anchor is the single focus target.
         this.selectedTextInput.setAttribute("readonly", "true")
+        this.selectedTextInput.setAttribute("tabindex", "-1")
         this.selectAnchor.appendChild(this.selectedTextInput)
         
         // dropdown icon
@@ -51,70 +55,18 @@ export class Selector {
 
         this.element.appendChild(this.selectAnchor)
         
-        // menu
-        this.menu = newEl("div", "mdc-select__menu", "mdc-menu", "mdc-menu-surface", "select-width")
-        this.menu.setAttribute("id", "category-select-menu")
-        this.menu.setAttribute("role", "listbox")
-        this.menu.style.width = "100%"
+        // menu — MDCSelect positions and shows/hides it; mdc-menu-surface--fullwidth
+        // keeps it aligned with the anchor width (MDC writes inline top/left).
+        this.menu = newEl("div", "mdc-select__menu", "mdc-menu", "mdc-menu-surface", "mdc-menu-surface--fullwidth", "select-width")
         this.element.appendChild(this.menu)
         
         // menu list
         this.list = newEl("ul", "mdc-list") as HTMLUListElement
+        this.list.setAttribute("role", "listbox")
         this.menu.appendChild(this.list)
-        
-        // Add click handler to toggle menu on both element and anchor
-        const toggleMenu = () => this.toggleMenu()
-        this.selectAnchor.addEventListener("click", toggleMenu)
-        this.element.addEventListener("click", (e) => {
-            if (e.target === this.element) {
-                toggleMenu()
-            }
-        })
-        
-        // Keyboard support: open on Enter/Space/ArrowDown, close on Escape.
-        // The anchor is focusable (tabindex 0) and MDC's own keydown handling
-        // also runs, so item navigation inside the open menu works too.
-        this.selectAnchor.addEventListener("keydown", (e: KeyboardEvent) => {
-            if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
-                e.preventDefault()
-                this.openMenu()
-            } else if (e.key === "Escape") {
-                this.closeMenu()
-            }
-        })
-        
-        // Close menu when clicking outside
-        document.addEventListener("click", (e: MouseEvent) => {
-            if (!this.element.contains(e.target as Node)) {
-                this.closeMenu()
-            }
-        })
         
         // add animation
         fadeIn(this.element)
-    }
-    
-    toggleMenu() {
-        if (this.isOpen) {
-            this.closeMenu()
-        } else {
-            this.openMenu()
-        }
-    }
-    
-    openMenu() {
-        this.isOpen = true
-        this.menu.classList.add("mdc-menu-surface--open")
-        this.element.classList.add("mdc-select--activated")
-        this.floatingLabel.classList.add("mdc-floating-label--float-above")
-        this.selectAnchor.setAttribute("aria-expanded", "true")
-    }
-    
-    closeMenu() {
-        this.isOpen = false
-        this.menu.classList.remove("mdc-menu-surface--open")
-        this.element.classList.remove("mdc-select--activated")
-        this.selectAnchor.setAttribute("aria-expanded", "false")
     }
     
     createItem(text: string, dataValue: string): HTMLLIElement {
@@ -124,38 +76,7 @@ export class Selector {
         const itemTextEl = newEl("span", "mdc-list-item__text")
         itemTextEl.textContent = text
         item.appendChild(itemTextEl)
-        
-        // Add click handler for selection
-        item.addEventListener("click", () => {
-            this.selectItem(item, text, dataValue)
-        })
-        
         return item
-    }
-    
-    selectItem(item: HTMLLIElement, text: string, dataValue: string) {
-        // Remove selected class from all items
-        this.items.forEach(i => {
-            i.classList.remove("mdc-list-item--selected")
-            i.removeAttribute("aria-selected")
-        })
-        
-        // Add selected class to clicked item
-        item.classList.add("mdc-list-item--selected")
-        item.setAttribute("aria-selected", "true")
-        
-        // Update the input value
-        this.selectedTextInput.value = text
-        
-        // Ensure floating label stays up
-        if (text) {
-            this.floatingLabel.classList.add("mdc-floating-label--float-above")
-        }
-        
-        // Close menu after selection
-        this.closeMenu()
-        // Keep focus on the control so keyboard users can immediately reopen
-        this.selectAnchor.focus()
     }
 
     addItem(item: HTMLLIElement) {
@@ -168,13 +89,37 @@ export class Selector {
         item.remove()
     }
 
+    // Mirrors a selection into the visible input. MDCSelect owns the actual
+    // selection state; it writes the selected text via textContent, which
+    // <input> elements don't display, so the value is mirrored here instead.
+    selectItem(item: HTMLLIElement) {
+        this.items.forEach(i => {
+            i.classList.remove("mdc-list-item--selected")
+            i.removeAttribute("aria-selected")
+        })
+        item.classList.add("mdc-list-item--selected")
+        item.setAttribute("aria-selected", "true")
+        this.selectedTextInput.value = item.querySelector(".mdc-list-item__text")?.textContent || ""
+        this.floatingLabel.classList.add("mdc-floating-label--float-above")
+    }
+
     setDefaultItem(dataValue: string) {
         for (const item of this.items) {
             if (item.getAttribute("data-value") === dataValue) {
-                const textElement = item.querySelector(".mdc-list-item__text")
-                const text = textElement?.textContent || ""
-                this.selectItem(item, text, dataValue)
+                this.selectItem(item)
                 break
+            }
+        }
+    }
+
+    // Called on MDCSelect:change so the visible text follows MDC's selection
+    syncValue(dataValue: string) {
+        for (const item of this.items) {
+            if (item.getAttribute("data-value") === dataValue) {
+                this.selectItem(item)
+                // Keep focus on the control so keyboard users can immediately reopen
+                this.selectAnchor.focus()
+                return
             }
         }
     }

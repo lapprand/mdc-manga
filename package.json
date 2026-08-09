@@ -9,7 +9,8 @@
     "build": "concurrently \"npm:build-*\"",
     "serve": "webpack-dev-server --config webpack-front.config.js --mode development",
     "deploy": "npm run build && wrangler deploy",
-    "preview": "npm run build && wrangler dev"
+    "preview": "npm run build && wrangler dev",
+    "test": "node test/verify-select.js"
   },
   "author": "Arthur Lapprand <lapprand@gmail.com>",
   "license": "ISC",
@@ -24,6 +25,7 @@
     "fork-ts-checker-webpack-plugin": "^9.0.2",
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.6.0",
+    "jsdom": "^30.0.1",
     "markup-inline-loader": "^0.2.3",
     "mini-css-extract-plugin": "^2.7.6",
     "postcss-loader": "^7.3.3",
@@ -48,7 +50,6 @@
     "@material/icon-button": "^14.0.0",
     "@material/image-list": "^14.0.0",
     "@material/line-ripple": "^14.0.0",
-    "@material/linear-progress": "^14.0.0",
     "@material/list": "^14.0.0",
     "@material/menu": "^14.0.0",
     "@material/ripple": "^14.0.0",
